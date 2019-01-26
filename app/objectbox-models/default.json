@@ -1,0 +1,165 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:620995241580084196",
+      "lastPropertyId": "11:1471800504598398413",
+      "name": "Anime",
+      "properties": [
+        {
+          "id": "1:3040899861901378710",
+          "name": "id"
+        },
+        {
+          "id": "2:3086957680241795349",
+          "name": "titulo"
+        },
+        {
+          "id": "3:5898502901980964637",
+          "name": "descricao"
+        },
+        {
+          "id": "4:5816655275750508311",
+          "name": "tipo"
+        },
+        {
+          "id": "5:6920349784124068205",
+          "name": "diretor"
+        },
+        {
+          "id": "6:829145253211052784",
+          "name": "estudio"
+        },
+        {
+          "id": "7:7549484049461019348",
+          "name": "status"
+        },
+        {
+          "id": "8:1009717004939558469",
+          "name": "anoDePublicacao"
+        },
+        {
+          "id": "9:4724251617819480890",
+          "name": "pontuacao"
+        },
+        {
+          "id": "10:8956148360749350290",
+          "name": "episodiosTotais"
+        },
+        {
+          "id": "11:1471800504598398413",
+          "name": "favorito"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:6691049762812025527",
+          "name": "episodios"
+        },
+        {
+          "id": "2:8395702353740437132",
+          "name": "generos"
+        }
+      ]
+    },
+    {
+      "id": "2:4890381935962266710",
+      "lastPropertyId": "4:7459650623888086234",
+      "name": "Episodio",
+      "properties": [
+        {
+          "id": "1:913589740098376982",
+          "name": "id"
+        },
+        {
+          "id": "2:6871355283538268487",
+          "name": "titulo"
+        },
+        {
+          "id": "3:1230832404586847881",
+          "name": "resenha"
+        },
+        {
+          "id": "4:7459650623888086234",
+          "name": "nota"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:6407914681331994751",
+      "lastPropertyId": "2:2850409624727471751",
+      "name": "Genero",
+      "properties": [
+        {
+          "id": "1:589213269847818179",
+          "name": "id"
+        },
+        {
+          "id": "2:2850409624727471751",
+          "name": "nomeDoGenero"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:8689302145142878949",
+      "lastPropertyId": "2:6060667803053287234",
+      "name": "Top",
+      "properties": [
+        {
+          "id": "1:2951451979475709070",
+          "name": "id"
+        },
+        {
+          "id": "2:6060667803053287234",
+          "name": "tituloDoTop"
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:5071240967060402088",
+          "name": "animesDoTop"
+        }
+      ]
+    },
+    {
+      "id": "5:2700065463216342313",
+      "lastPropertyId": "3:937349029793923958",
+      "name": "Usuario",
+      "properties": [
+        {
+          "id": "1:5974582196891088624",
+          "name": "id"
+        },
+        {
+          "id": "2:2961615340918881662",
+          "name": "nome"
+        },
+        {
+          "id": "3:937349029793923958",
+          "name": "senha"
+        }
+      ],
+      "relations": [
+        {
+          "id": "4:4776731472060437249",
+          "name": "animes"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "5:2700065463216342313",
+  "lastIndexId": "0:0",
+  "lastRelationId": "4:4776731472060437249",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
