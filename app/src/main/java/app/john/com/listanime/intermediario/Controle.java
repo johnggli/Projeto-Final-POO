@@ -18,6 +18,10 @@ public class Controle {
         this.usuarioLogado = null;
     }
 
+    public List<Usuario> getUsuarios() {
+        return this.usuarios;
+    }
+
     public boolean cadastrarUsuario(String nome, String email, String senha) {
         for (Usuario usuario : usuarios){
             if (usuario.getEmail().equals(email)){
