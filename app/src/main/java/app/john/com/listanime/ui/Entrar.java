@@ -1,5 +1,6 @@
 package app.john.com.listanime.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -34,13 +35,11 @@ public class Entrar extends AppCompatActivity {
         String senha = txtSenha.getText().toString();
 
         if (controle.logar(email, senha)) {
-            mensagem("Entrou!");
+            startActivity(new Intent(this, Main.class));
         }
         else {
             mensagem("Erro!");
         }
-
-        finish();
     }
 
     public void mensagem (String mensagem) {

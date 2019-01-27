@@ -12,13 +12,17 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.Login">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Entrar"/>
-        <activity android:name=".ui.Cadastrar"/>
+        <activity android:name=".ui.Entrar" />
+        <activity android:name=".ui.Cadastrar" />
+        <activity
+            android:name=".ui.Main"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
