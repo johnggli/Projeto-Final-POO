@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:620995241580084196",
-      "lastPropertyId": "11:1471800504598398413",
+      "lastPropertyId": "13:3294630721482633602",
       "name": "Anime",
       "properties": [
         {
@@ -127,7 +127,7 @@
     },
     {
       "id": "5:2700065463216342313",
-      "lastPropertyId": "3:937349029793923958",
+      "lastPropertyId": "4:1572786745566286866",
       "name": "Usuario",
       "properties": [
         {
@@ -141,25 +141,41 @@
         {
           "id": "3:937349029793923958",
           "name": "senha"
+        },
+        {
+          "id": "4:1572786745566286866",
+          "name": "email"
         }
       ],
       "relations": [
         {
-          "id": "4:4776731472060437249",
+          "id": "5:617316271256183379",
           "name": "animes"
+        },
+        {
+          "id": "6:4211249751136971780",
+          "name": "generos"
         }
       ]
     }
   ],
   "lastEntityId": "5:2700065463216342313",
-  "lastIndexId": "0:0",
-  "lastRelationId": "4:4776731472060437249",
+  "lastIndexId": "2:5702085462772000224",
+  "lastRelationId": "6:4211249751136971780",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
-  "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredIndexUids": [
+    5980887183460672453,
+    5702085462772000224
+  ],
+  "retiredPropertyUids": [
+    8717457740342122676,
+    3294630721482633602
+  ],
+  "retiredRelationUids": [
+    4776731472060437249
+  ],
   "version": 1
 }

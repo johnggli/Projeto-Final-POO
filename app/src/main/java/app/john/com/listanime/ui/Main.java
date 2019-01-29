@@ -1,9 +1,8 @@
 package app.john.com.listanime.ui;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,12 +13,14 @@ import android.view.View;
 
 import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.SectionsPagerAdapter;
+import app.john.com.listanime.intermediario.Controle;
 
 public class Main extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private SectionsPagerAdapter adapter;
+    private Controle controle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class Main extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
+        controle = new Controle();
 
 
 
@@ -52,15 +55,6 @@ public class Main extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_play);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_check);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_favorite);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -71,5 +65,10 @@ public class Main extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void cadastrarAnime(View view){
+        final Intent intent = new Intent(this, CadastrarAnime.class);
+        startActivity(intent);
     }
 }

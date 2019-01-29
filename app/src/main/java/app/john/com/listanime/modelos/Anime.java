@@ -1,34 +1,32 @@
 package app.john.com.listanime.modelos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToMany;
 
 @Entity
 public class Anime {
     //Atributos
     @Id
-    private long id;
+    public long id;
+
     private String titulo, descricao, tipo, diretor, estudio, status;
     private int anoDePublicacao, pontuacao, episodiosTotais;
-    private List<Episodio> episodios = new ArrayList<>();
-    private List<Genero> generos = new ArrayList<>();
+    private ToMany<Episodio> episodios;
+    private ToMany<Genero> generos;
     private boolean favorito = false;
 
-    //Construtor
-    public Anime(String titulo, String descricao, String tipo, String diretor, String estudio,
-                 String status, int anoDePublicacao, int pontuacao, int episodiosTotais) {
+    //Construtores
+    public Anime() {
+
+    }
+
+    public Anime(String titulo, String diretor, String estudio) {
         this.titulo = titulo;
-        this.descricao = descricao;
-        this.tipo = tipo;
         this.diretor = diretor;
         this.estudio = estudio;
-        this.status = status;
-        this.anoDePublicacao = anoDePublicacao;
-        this.pontuacao = pontuacao;
-        this.episodiosTotais = episodiosTotais;
     }
 
     //Métodos de Negócio
@@ -120,13 +118,5 @@ public class Anime {
 
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

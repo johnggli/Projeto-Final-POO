@@ -34,8 +34,10 @@ public class Entrar extends AppCompatActivity {
         String email = txtEmail.getText().toString();
         String senha = txtSenha.getText().toString();
 
+
         if (controle.logar(email, senha)) {
             startActivity(new Intent(this, Main.class));
+            finish();
         }
         else {
             mensagem("Erro!");

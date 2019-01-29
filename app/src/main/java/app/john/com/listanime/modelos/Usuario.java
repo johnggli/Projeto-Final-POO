@@ -1,20 +1,18 @@
 package app.john.com.listanime.modelos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToMany;
 
 @Entity
 public class Usuario {
     //Atributos
     @Id
-    private long id;
+    public long id;
     private String nome, email, senha;
-    private List<Anime> animes = new ArrayList<>();
+    public ToMany<Anime> animes;
 
-    //Construtor
+    //Construtores
     public Usuario() {
 
     }
@@ -51,15 +49,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public List<Anime> getAnimes() {
-        return animes;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public boolean addAnime(String titulo, String diretor, String estudio) {
+        Anime novoAnime = new Anime(titulo, diretor, estudio);
+        if (animes.add(novoAnime)) {
+            return true;
+        }
+        return false;
     }
 }

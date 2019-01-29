@@ -8,20 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import app.john.com.listanime.R;
-import app.john.com.listanime.modelos.Usuario;
-import io.objectbox.Box;
+import app.john.com.listanime.modelos.Anime;
+import io.objectbox.relation.ToMany;
 
 public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHolder> {
 
     private Context context;
-    private List<Usuario> usuarios;
+    private ToMany<Anime> animes;
 
-    public AnimeRVAdapter(Context context, List<Usuario> usuarios) {
+    public AnimeRVAdapter(Context context, ToMany<Anime> animes) {
         this.context = context;
-        this.usuarios = usuarios;
+        this.animes = animes;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -38,9 +36,9 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_assistindo, viewGroup, false);
+
         MyViewHolder vHolder = new MyViewHolder(view);
 
         return vHolder;
@@ -49,12 +47,12 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
-        myViewHolder.nomeDoAnime.setText(usuarios.get(i).getNome());
+        myViewHolder.nomeDoAnime.setText(animes.get(i).getTitulo());
 
     }
 
     @Override
     public int getItemCount() {
-        return usuarios.size();
+        return animes.size();
     }
 }
