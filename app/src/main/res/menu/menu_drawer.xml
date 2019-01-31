@@ -3,13 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view" >
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/grupo_principal"
+        android:checkableBehavior="single">
         <item android:id="@+id/meusNumeros"
             android:icon="@drawable/ic_meus_numeros"
             android:title="Meus números" />
 
+        <item android:id="@+id/tops"
+            android:icon="@drawable/ic_top"
+            android:title="Meus top's" />
+
         <item android:id="@+id/pretendoAssistir"
-            android:icon="@drawable/ic_light"
+            android:icon="@drawable/ic_watch_later"
             android:title="Pretendo assistir" />
 
         <item android:id="@+id/animesDescartados"
@@ -21,17 +27,17 @@
             android:title="Notificações" />
     </group>
 
-    <item android:title="Mais">
-        <menu>
-            <item android:id="@+id/ajuda"
-                android:icon="@drawable/ic_help"
-                android:title="Ajuda" />
+    <group
+        android:id="@+id/grupo_conta"
+        android:checkableBehavior="single">
+        <item android:id="@+id/config"
+            android:icon="@drawable/ic_config"
+            android:title="Configurações" />
 
-            <item android:id="@+id/sair"
-                android:icon="@drawable/ic_sair"
-                android:title="Sair" />
-        </menu>
+        <item android:id="@+id/sair"
+            android:icon="@drawable/ic_sair"
+            android:title="Sair" />
 
-    </item>
+    </group>
 
 </menu>
