@@ -46,4 +46,9 @@ public class Controle {
     public Usuario getUsuarioLogado() {
         return usuarioBox.get(idUsuarioLogado);
     }
+
+    public boolean sair() {
+        idUsuarioLogado = -1;
+        return true;
+    }
 }
