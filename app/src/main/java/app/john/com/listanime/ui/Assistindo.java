@@ -50,4 +50,14 @@ public class Assistindo extends Fragment {
 
         controle = new Controle();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animes);
+
+        rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvAnimes.setAdapter(adapter);
+    }
 }

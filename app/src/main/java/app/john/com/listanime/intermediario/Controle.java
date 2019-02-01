@@ -10,7 +10,6 @@ public class Controle {
     private BoxStore boxStore = App.getApp().getBoxStore();
     private Box<Usuario> usuarioBox = boxStore.boxFor(Usuario.class);
     private static long idUsuarioLogado;
-    private Anime anime;
 
     public Controle() {
     }
@@ -30,14 +29,23 @@ public class Controle {
         for (Usuario usuario: usuarioBox.getAll()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
                 idUsuarioLogado = usuario.id;
+
+                logarUsuario();
+
                 return true;
             }
         }
         return false;
     }
 
+    public void logarUsuario() {
+        Usuario usuario = usuarioBox.get(idUsuarioLogado);
+        usuario.setLogado(true);
+        usuarioBox.put(usuario);
+    }
+
     public void cadastrarAnime(String titulo, String diretor, String estudio) {
-        anime = new Anime(titulo, diretor, estudio);
+        Anime anime = new Anime(titulo, diretor, estudio);
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
         usuario.animes.add(anime);
         usuarioBox.put(usuario);
@@ -47,8 +55,19 @@ public class Controle {
         return usuarioBox.get(idUsuarioLogado);
     }
 
-    public boolean sair() {
-        idUsuarioLogado = -1;
-        return true;
+    public void deslogar() {
+        Usuario usuario = usuarioBox.get(idUsuarioLogado);
+        usuario.setLogado(false);
+        usuarioBox.put(usuario);
+    }
+
+    public boolean temUsuarioLogado() {
+        for (Usuario usuario: usuarioBox.getAll()) {
+            if (usuario.getLogado()) {
+                idUsuarioLogado = usuario.id;
+                return true;
+            }
+        }
+        return false;
     }
 }

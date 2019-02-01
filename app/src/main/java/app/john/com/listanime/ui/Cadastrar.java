@@ -1,5 +1,6 @@
 package app.john.com.listanime.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -36,11 +37,15 @@ public class Cadastrar extends AppCompatActivity {
         String senha = txtSenha.getText().toString();
 
         // cadastra o usuário
-        controle.cadastrarUsuario(nome, email, senha);
-        mensagem("Usuário cadastrado com sucesso!");
-
-        // encerra a tela de cadastro
-        finish();
+        if (controle.cadastrarUsuario(nome, email, senha)) {
+            mensagem("Usuário cadastrado com sucesso!");
+            controle.logar(email, senha);
+            startActivity(new Intent(this, Main.class));
+            finish();
+        }
+        else {
+            mensagem("Email ja cadastrado!");
+        }
     }
 
     public void mensagem (String mensagem) {

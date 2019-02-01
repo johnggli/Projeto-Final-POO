@@ -87,10 +87,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(new Intent(this, Configuracoes.class));
                 break;
             case R.id.sair:
-                if (controle.sair()) {
-                    Toast.makeText(this, "Logout efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+                controle.deslogar();
+                startActivity(new Intent(this, Login.class));
+                Toast.makeText(this, "Logout efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
 
