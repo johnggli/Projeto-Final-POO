@@ -13,7 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.SectionsPagerAdapter;
@@ -21,38 +23,39 @@ import app.john.com.listanime.intermediario.Controle;
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private SectionsPagerAdapter adapter;
     private Controle controle;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        // iniciando controle
+        controle = new Controle();
+
+        // toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.main_content);
+        // construindo drawer
+        drawer = findViewById(R.id.main_content);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
+        // navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // construindo as tabs
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        ViewPager viewPager = findViewById(R.id.container);
 
-        controle = new Controle();
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-
-
-        tabLayout = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.container);
-        adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        // adicionando fragments e seus ícones
         adapter.AddFragment(new Assistindo(), "Assistindo");
         adapter.AddFragment(new Concluido(), "Concluídos");
         adapter.AddFragment(new Favoritos(), "Favoritos");
@@ -63,6 +66,13 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_play);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_check);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_favorite);
+
+        // colocando o nome do usuário logado na navigation header
+        View headView = navigationView.getHeaderView(0);
+
+        TextView nomeDoUsuario = headView.findViewById(R.id.nomeDoUsuario);
+
+        nomeDoUsuario.setText(controle.getUsuarioLogado().getNome());
     }
 
     @Override
@@ -89,12 +99,12 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.sair:
                 controle.deslogar();
                 startActivity(new Intent(this, Login.class));
-                Toast.makeText(this, "Logout efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                mostrarMensagem("Logout efetuado com sucesso!");
                 finish();
                 break;
         }
 
-        DrawerLayout drawer = findViewById(R.id.main_content);
+        // fecha o drawer
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
@@ -102,7 +112,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.main_content);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -111,7 +120,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     public void cadastrarAnime(View view){
-        final Intent intent = new Intent(this, CadastrarAnime.class);
-        startActivity(intent);
+        startActivity(new Intent(this, CadastrarAnime.class));
+    }
+
+    public void mostrarMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
 }
