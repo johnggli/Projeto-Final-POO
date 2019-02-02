@@ -1,5 +1,7 @@
 package app.john.com.listanime.modelos;
 
+import android.widget.ImageView;
+
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.relation.ToMany;
@@ -17,6 +19,7 @@ public class Usuario {
     public Usuario() {
 
     }
+
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;

@@ -19,7 +19,6 @@ public class Assistindo extends Fragment {
 
     View view;
     private RecyclerView rvAnimes;
-    private TextView nomeDoUsuario;
     private Controle controle;
 
     public Assistindo() {
@@ -32,9 +31,6 @@ public class Assistindo extends Fragment {
         view = inflater.inflate(R.layout.fragment_assistindo, container, false);
 
         rvAnimes = view.findViewById(R.id.rvAssistindo);
-        nomeDoUsuario = view.findViewById(R.id.textView2);
-
-        nomeDoUsuario.setText(controle.getUsuarioLogado().getNome());
 
         AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animes);
 
