@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.Login"
+            android:name=".ui.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,6 +19,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".ui.Entrar"
@@ -40,7 +45,7 @@
         <activity android:name=".ui.PretendoAssistir" />
         <activity android:name=".ui.AnimesDescartados" />
         <activity android:name=".ui.Notificacoes" />
-        <activity android:name=".ui.Configuracoes"></activity>
+        <activity android:name=".ui.Configuracoes" />
     </application>
 
 </manifest>
