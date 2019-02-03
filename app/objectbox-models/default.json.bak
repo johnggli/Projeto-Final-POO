@@ -155,13 +155,25 @@
         {
           "id": "8:4574118947960029837",
           "name": "animesConcluidos"
+        },
+        {
+          "id": "9:3664786392342862267",
+          "name": "animesPretendoAssistir"
+        },
+        {
+          "id": "10:3530210135461270089",
+          "name": "animesDescartados"
+        },
+        {
+          "id": "11:7166448522621944531",
+          "name": "animesFavoritos"
         }
       ]
     }
   ],
   "lastEntityId": "5:2700065463216342313",
   "lastIndexId": "2:5702085462772000224",
-  "lastRelationId": "8:4574118947960029837",
+  "lastRelationId": "11:7166448522621944531",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,

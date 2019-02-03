@@ -11,6 +11,7 @@ import io.objectbox.BoxStore;
 public class Controle {
     private BoxStore boxStore = App.getApp().getBoxStore();
     private Box<Usuario> usuarioBox = boxStore.boxFor(Usuario.class);
+    private Box<Anime> animeBox = boxStore.boxFor(Anime.class);
     private static long idUsuarioLogado;
 
     public Controle() {

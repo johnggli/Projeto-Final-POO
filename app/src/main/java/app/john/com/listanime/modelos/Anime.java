@@ -15,9 +15,7 @@ public class Anime {
     public long id;
 
     private String titulo, descricao, tipo, diretor, estudio;
-    private int anoDeExibicao, pontuacao, episodiosTotais;
-    private ToMany<Episodio> episodios;
-    private ToMany<Genero> generos;
+    private int anoDeExibicao, pontuacao, episodiosTotais, episodiosAssistidos;
     private boolean favorito;
 
     //Construtores
@@ -35,6 +33,7 @@ public class Anime {
         this.descricao = descricao;
         this.pontuacao = pontuacao;
         this.favorito = false;
+        this.episodiosAssistidos = 0;
 
     }
 
@@ -97,14 +96,6 @@ public class Anime {
         this.episodiosTotais = episodiosTotais;
     }
 
-    public List<Episodio> getEpisodios() {
-        return episodios;
-    }
-
-    public List<Genero> getGeneros() {
-        return generos;
-    }
-
     public boolean isFavorito() {
         return favorito;
     }
@@ -119,5 +110,13 @@ public class Anime {
 
     public void setAnoDeExibicao(int anoDeExibicao) {
         this.anoDeExibicao = anoDeExibicao;
+    }
+
+    public int getEpisodiosAssistidos() {
+        return episodiosAssistidos;
+    }
+
+    public void setEpisodiosAssistidos(int episodiosAssistidos) {
+        this.episodiosAssistidos = episodiosAssistidos;
     }
 }

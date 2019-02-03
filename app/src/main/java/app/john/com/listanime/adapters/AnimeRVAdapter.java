@@ -21,7 +21,6 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
 
     private Context context;
     private ToMany<Anime> animes;
-    private Dialog dialog;
 
     public AnimeRVAdapter(Context context, ToMany<Anime> animes) {
         this.context = context;
@@ -55,23 +54,6 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         view = LayoutInflater.from(context).inflate(R.layout.item_assistindo, viewGroup, false);
 
         final MyViewHolder vHolder = new MyViewHolder(view);
-
-        dialog = new Dialog(context);
-        dialog.setContentView(R.layout.tela_dialogo);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        vHolder.itemDaVHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // binds e sets de dialog
-                TextView nomeDoAnime = dialog.findViewById(R.id.tituloDoAnime);
-                TextView nomeDoEstudio = dialog.findViewById(R.id.nomeDoEstudio);
-                nomeDoAnime.setText(animes.get(vHolder.getAdapterPosition()).getTitulo());
-                nomeDoEstudio.setText(animes.get(vHolder.getAdapterPosition()).getEstudio());
-
-                dialog.show();
-            }
-        });
 
         return vHolder;
     }
