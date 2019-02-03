@@ -61,12 +61,4 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public boolean addAnime(String titulo, String diretor, String estudio) {
-        Anime novoAnime = new Anime(titulo, diretor, estudio);
-        if (animes.add(novoAnime)) {
-            return true;
-        }
-        return false;
-    }
 }

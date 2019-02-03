@@ -31,11 +31,12 @@
                 android:id="@+id/txtCamposObrigatorios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="left"
                 android:text="Campos obrigatórios:"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginStart="16dp" />
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/cardViewObrigatoria"
@@ -74,6 +75,16 @@
                         android:textSize="16sp" />
 
                     <EditText
+                        android:id="@+id/txtAno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:hint="Ano de exibição"
+                        android:inputType="date"
+                        android:textSize="16sp" />
+
+                    <EditText
                         android:id="@+id/txtEpisodiosTotais"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,8 +102,8 @@
                 android:id="@+id/txtCamposOpcionais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="left"
                 android:text="Campos opcionais:"
@@ -153,9 +164,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
                         android:hint="Descrição do anime"
-                        android:inputType="textPersonName"
+                        android:inputType="text"
                         android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtNota"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Nota:"
+                            android:textSize="16sp" />
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

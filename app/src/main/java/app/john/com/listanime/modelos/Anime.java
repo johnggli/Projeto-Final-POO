@@ -15,7 +15,7 @@ public class Anime {
     public long id;
 
     private String titulo, descricao, tipo, diretor, estudio, status;
-    private int anoDePublicacao, pontuacao, episodiosTotais;
+    private int anoDeExibicao, pontuacao, episodiosTotais;
     private ToMany<Episodio> episodios;
     private ToMany<Genero> generos;
     private boolean favorito;
@@ -25,10 +25,16 @@ public class Anime {
 
     }
 
-    public Anime(String titulo, String diretor, String estudio) {
+    public Anime(String titulo, String estudio, int ano, int episodiosTotais, String status,
+                 String diretor, String descricao, int pontuacao) {
         this.titulo = titulo;
-        this.diretor = diretor;
         this.estudio = estudio;
+        this.anoDeExibicao = ano;
+        this.episodiosTotais = episodiosTotais;
+        this.status = status;
+        this.diretor = diretor;
+        this.descricao = descricao;
+        this.pontuacao = pontuacao;
         this.favorito = false;
 
     }
@@ -84,14 +90,6 @@ public class Anime {
         this.status = status;
     }
 
-    public int getAnoDePublicacao() {
-        return anoDePublicacao;
-    }
-
-    public void setAnoDePublicacao(int anoDePublicacao) {
-        this.anoDePublicacao = anoDePublicacao;
-    }
-
     public int getPontuacao() {
         return pontuacao;
     }
@@ -122,5 +120,13 @@ public class Anime {
 
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public int getAnoDeExibicao() {
+        return anoDeExibicao;
+    }
+
+    public void setAnoDeExibicao(int anoDeExibicao) {
+        this.anoDeExibicao = anoDeExibicao;
     }
 }

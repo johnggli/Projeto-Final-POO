@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="8dp"
@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -50,10 +50,25 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginTop="2dp"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@mipmap/icone_episodios"/>
+                    android:src="@mipmap/icone_exibicao" />
+
+                <TextView
+                    android:id="@+id/txtAno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Ano"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/icone_episodios"
+                    android:layout_marginStart="16dp" />
 
                 <TextView
                     android:id="@+id/txtEpisodios"
@@ -64,11 +79,11 @@
                     android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@mipmap/icone_nota"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="16dp" />
 
                 <TextView
                     android:id="@+id/txtNota"

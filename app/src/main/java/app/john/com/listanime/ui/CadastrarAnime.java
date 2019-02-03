@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,8 +25,11 @@ import app.john.com.listanime.intermediario.Controle;
 
 public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private EditText tituloDoAnime, nomeDoDiretor, nomeDoEstudio;
+    private EditText tituloDoAnime, nomeDoEstudio, anoDeExibicao, totalDeEpisodios, nomeDoDiretor, descricao;
+    private String status;
+    private int nota;
     private Spinner spinnerStatus;
+    private RatingBar ratingBar;
     private Controle controle;
 
     @Override
@@ -44,25 +48,39 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
 
         spinnerStatus.setOnItemSelectedListener(this);
 
+        ratingBar = findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                nota = (int) rating;
+            }
+        });
+
         tituloDoAnime = findViewById(R.id.txtTitulo);
-        nomeDoDiretor = findViewById(R.id.txtDiretor);
         nomeDoEstudio = findViewById(R.id.txtEstudio);
+        anoDeExibicao = findViewById(R.id.txtAno);
+        totalDeEpisodios = findViewById(R.id.txtEpisodiosTotais);
+        nomeDoDiretor = findViewById(R.id.txtDiretor);
+        descricao = findViewById(R.id.txtDescricao);
     }
 
     public void adiconarAnime(View view) {
         String titulo = tituloDoAnime.getText().toString();
-        String diretor = nomeDoDiretor.getText().toString();
         String estudio = nomeDoEstudio.getText().toString();
+        int ano = Integer.parseInt(anoDeExibicao.getText().toString());
+        int episodiosTotais = Integer.parseInt(totalDeEpisodios.getText().toString());
+        String diretor = nomeDoDiretor.getText().toString();
+        String descr = descricao.getText().toString();
+        int pontuacao = nota;
 
-        controle.cadastrarAnime(titulo, diretor, estudio);
+        controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, status, diretor, descr, pontuacao);
 
         finish();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "selecionou " + item, Toast.LENGTH_SHORT).show();
+        status = parent.getItemAtPosition(position).toString();
     }
 
     @Override

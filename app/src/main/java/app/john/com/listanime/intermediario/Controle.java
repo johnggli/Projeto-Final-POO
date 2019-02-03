@@ -46,8 +46,9 @@ public class Controle {
         usuarioBox.put(usuario);
     }
 
-    public void cadastrarAnime(String titulo, String diretor, String estudio) {
-        Anime anime = new Anime(titulo, diretor, estudio);
+    public void cadastrarAnime(String titulo, String estudio, int ano, int episodiosTotais, String status,
+                               String diretor, String descricao, int pontuacao) {
+        Anime anime = new Anime(titulo, estudio, ano, episodiosTotais, status, diretor, descricao, pontuacao);
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
         usuario.animes.add(anime);
         usuarioBox.put(usuario);

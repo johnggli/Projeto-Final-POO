@@ -25,11 +25,17 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nomeDoAnime;
+        private TextView anoDeExibicao;
+        private TextView nota;
+        private TextView nomeDoEstudio;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             nomeDoAnime = itemView.findViewById(R.id.txtNomeAnime);
+            anoDeExibicao = itemView.findViewById(R.id.txtAno);
+            nota = itemView.findViewById(R.id.txtNota);
+            nomeDoEstudio = itemView.findViewById(R.id.txtNomeEstudio);
         }
     }
 
@@ -48,6 +54,9 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
         myViewHolder.nomeDoAnime.setText(animes.get(i).getTitulo());
+        myViewHolder.anoDeExibicao.setText("" + animes.get(i).getAnoDeExibicao());
+        myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
+        myViewHolder.nomeDoEstudio.setText(animes.get(i).getEstudio());
 
     }
 
