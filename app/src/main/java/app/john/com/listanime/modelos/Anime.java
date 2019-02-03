@@ -14,7 +14,7 @@ public class Anime {
     @Id
     public long id;
 
-    private String titulo, descricao, tipo, diretor, estudio, status;
+    private String titulo, descricao, tipo, diretor, estudio;
     private int anoDeExibicao, pontuacao, episodiosTotais;
     private ToMany<Episodio> episodios;
     private ToMany<Genero> generos;
@@ -25,13 +25,12 @@ public class Anime {
 
     }
 
-    public Anime(String titulo, String estudio, int ano, int episodiosTotais, String status,
+    public Anime(String titulo, String estudio, int ano, int episodiosTotais,
                  String diretor, String descricao, int pontuacao) {
         this.titulo = titulo;
         this.estudio = estudio;
         this.anoDeExibicao = ano;
         this.episodiosTotais = episodiosTotais;
-        this.status = status;
         this.diretor = diretor;
         this.descricao = descricao;
         this.pontuacao = pontuacao;
@@ -80,14 +79,6 @@ public class Anime {
 
     public void setEstudio(String estudio) {
         this.estudio = estudio;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getPontuacao() {

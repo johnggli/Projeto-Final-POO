@@ -23,8 +23,7 @@
         <activity
             android:name=".ui.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.Entrar"
             android:screenOrientation="portrait" />

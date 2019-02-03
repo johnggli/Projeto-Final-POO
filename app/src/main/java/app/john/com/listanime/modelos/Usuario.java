@@ -2,6 +2,8 @@ package app.john.com.listanime.modelos;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.relation.ToMany;
@@ -12,7 +14,11 @@ public class Usuario {
     @Id
     public long id;
     private String nome, email, senha;
-    public ToMany<Anime> animes;
+    public ToMany<Anime> animesAssistindo;
+    public ToMany<Anime> animesConcluidos;
+    public ToMany<Anime> animesPretendoAssistir;
+    public ToMany<Anime> animesDescartados;
+    public ToMany<Anime> animesFavoritos;
     private boolean logado;
 
     //Construtores

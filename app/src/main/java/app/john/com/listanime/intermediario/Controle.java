@@ -48,9 +48,21 @@ public class Controle {
 
     public void cadastrarAnime(String titulo, String estudio, int ano, int episodiosTotais, String status,
                                String diretor, String descricao, int pontuacao) {
-        Anime anime = new Anime(titulo, estudio, ano, episodiosTotais, status, diretor, descricao, pontuacao);
+        Anime anime = new Anime(titulo, estudio, ano, episodiosTotais, diretor, descricao, pontuacao);
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
-        usuario.animes.add(anime);
+
+        if (status.equals("Assistindo")) {
+            usuario.animesAssistindo.add(anime);
+        }
+        else if (status.equals("Concluído")) {
+            usuario.animesConcluidos.add(anime);
+        }
+        else if (status.equals("Pretendo assistir")) {
+            usuario.animesPretendoAssistir.add(anime);
+        }
+        else if (status.equals("Descartado")) {
+            usuario.animesDescartados.add(anime);
+        }
         usuarioBox.put(usuario);
     }
 
