@@ -1,5 +1,7 @@
 package app.john.com.listanime.modelos;
 
+import android.widget.ImageView;
+
 import java.util.List;
 
 import io.objectbox.annotation.Entity;
@@ -16,7 +18,7 @@ public class Anime {
     private int anoDePublicacao, pontuacao, episodiosTotais;
     private ToMany<Episodio> episodios;
     private ToMany<Genero> generos;
-    private boolean favorito = false;
+    private boolean favorito;
 
     //Construtores
     public Anime() {
@@ -27,6 +29,8 @@ public class Anime {
         this.titulo = titulo;
         this.diretor = diretor;
         this.estudio = estudio;
+        this.favorito = false;
+
     }
 
     //Métodos de Negócio

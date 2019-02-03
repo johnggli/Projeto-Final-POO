@@ -24,48 +24,141 @@
                 android:paddingBottom="8dp"
                 android:text="Dados da Obra"
                 android:textAllCaps="true"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/txtCamposObrigatorios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="8dp"
                 android:gravity="left"
                 android:text="Campos obrigatórios:"
                 android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/txtTitulo"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardViewObrigatoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:hint="Título do anime"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                card_view:cardCornerRadius="5dp">
 
-            <EditText
-                android:id="@+id/txtDiretor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:hint="Nome do diretor"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/txtEstudio"
+                    <EditText
+                        android:id="@+id/txtTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="8dp"
+                        android:hint="Título do anime"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txtEstudio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:hint="Nome do estúdio"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txtEpisodiosTotais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Total de episódios"
+                        android:inputType="number"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtCamposOpcionais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:hint="Nome do estúdio"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:text="Campos opcionais:"
+                android:textSize="12sp" />
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardViewOpcional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                card_view:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status:"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp" />
+
+                        <Spinner
+                            android:id="@+id/spinnerStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp">
+
+                        </Spinner>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/txtDiretor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="8dp"
+                        android:hint="Nome do diretor"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txtDescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:hint="Descrição do anime"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
             <Button
                 android:id="@+id/btnSalvar"
@@ -76,10 +169,7 @@
                 android:layout_marginRight="8dp"
                 android:onClick="adiconarAnime"
                 android:text="Salvar" />
-
-
         </LinearLayout>
-
     </ScrollView>
 
 </RelativeLayout>

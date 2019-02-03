@@ -1,5 +1,7 @@
 package app.john.com.listanime.intermediario;
 
+import android.widget.ImageView;
+
 import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.modelos.Usuario;
 import app.john.com.listanime.persistencia.App;
