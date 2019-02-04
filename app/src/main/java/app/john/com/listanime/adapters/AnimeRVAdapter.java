@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,20 +31,24 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nomeDoAnime;
-        private TextView anoDeExibicao;
-        private TextView nota;
         private TextView nomeDoEstudio;
-        private LinearLayout itemDaVHolder;
+        private TextView anoDeExibicao;
+        private TextView episodiosAssistidos;
+        private TextView episodiosTotais;
+        private TextView nota;
+        private ProgressBar progressBar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            itemDaVHolder = itemView.findViewById(R.id.anime_item);
-
             nomeDoAnime = itemView.findViewById(R.id.txtNomeAnime);
-            anoDeExibicao = itemView.findViewById(R.id.txtAno);
-            nota = itemView.findViewById(R.id.txtNota);
             nomeDoEstudio = itemView.findViewById(R.id.txtNomeEstudio);
+            anoDeExibicao = itemView.findViewById(R.id.txtAno);
+            episodiosAssistidos = itemView.findViewById(R.id.episodiosAssistidos);
+            episodiosTotais = itemView.findViewById(R.id.episodiosTotais);
+            nota = itemView.findViewById(R.id.txtNota);
+
+            progressBar = itemView.findViewById(R.id.barraDeProgresso);
         }
     }
 
@@ -62,9 +67,14 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
         myViewHolder.nomeDoAnime.setText(animes.get(i).getTitulo());
-        myViewHolder.anoDeExibicao.setText("" + animes.get(i).getAnoDeExibicao());
-        myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
         myViewHolder.nomeDoEstudio.setText(animes.get(i).getEstudio());
+        myViewHolder.anoDeExibicao.setText("" + animes.get(i).getAnoDeExibicao());
+        myViewHolder.episodiosAssistidos.setText("" + animes.get(i).getEpisodiosAssistidos());
+        myViewHolder.episodiosTotais.setText("" + animes.get(i).getEpisodiosTotais());
+        myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
+
+        int valor = animes.get(i).getEpisodiosAssistidos() * 100 / animes.get(i).getEpisodiosTotais();
+        myViewHolder.progressBar.setProgress(valor);
 
     }
 

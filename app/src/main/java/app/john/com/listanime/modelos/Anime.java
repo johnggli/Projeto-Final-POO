@@ -16,6 +16,7 @@ public class Anime {
 
     private String titulo, descricao, tipo, diretor, estudio;
     private int anoDeExibicao, pontuacao, episodiosTotais, episodiosAssistidos;
+    public ToMany<Anotacao> anotacoes;
     private boolean favorito;
 
     //Construtores
@@ -23,7 +24,7 @@ public class Anime {
 
     }
 
-    public Anime(String titulo, String estudio, int ano, int episodiosTotais,
+    public Anime(String titulo, String estudio, int ano, int episodiosTotais, int episodiosAssistidos,
                  String diretor, String descricao, int pontuacao) {
         this.titulo = titulo;
         this.estudio = estudio;
@@ -33,7 +34,7 @@ public class Anime {
         this.descricao = descricao;
         this.pontuacao = pontuacao;
         this.favorito = false;
-        this.episodiosAssistidos = 0;
+        this.episodiosAssistidos = episodiosAssistidos;
 
     }
 

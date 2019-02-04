@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -25,11 +27,14 @@ import app.john.com.listanime.intermediario.Controle;
 
 public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private EditText tituloDoAnime, nomeDoEstudio, anoDeExibicao, totalDeEpisodios, nomeDoDiretor, descricao;
+    private EditText tituloDoAnime, nomeDoEstudio, anoDeExibicao, totalDeEpisodios, nomeDoDiretor,
+            descricao;
+    private TextView episodiosAssistidos;
     private String status;
-    private int nota;
+    private int nota, quantidadeDeEpisodiosAssistidos;
     private Spinner spinnerStatus;
     private RatingBar ratingBar;
+    private Button btnCancelarOuExcluir;
     private Controle controle;
 
     @Override
@@ -62,6 +67,8 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         totalDeEpisodios = findViewById(R.id.txtEpisodiosTotais);
         nomeDoDiretor = findViewById(R.id.txtDiretor);
         descricao = findViewById(R.id.txtDescricao);
+        episodiosAssistidos = findViewById(R.id.txtEpisodiosAssistidos);
+        quantidadeDeEpisodiosAssistidos = 0;
     }
 
     public void adiconarAnime(View view) {
@@ -72,9 +79,24 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         String diretor = nomeDoDiretor.getText().toString();
         String descr = descricao.getText().toString();
         int pontuacao = nota;
+        int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
-        controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, status, diretor, descr, pontuacao);
+        controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status, diretor, descr, pontuacao);
 
+        finish();
+    }
+
+    public void incrementar(View view) {
+        quantidadeDeEpisodiosAssistidos++;
+        episodiosAssistidos.setText(""+quantidadeDeEpisodiosAssistidos);
+    }
+
+    public void decrementar(View view) {
+        quantidadeDeEpisodiosAssistidos--;
+        episodiosAssistidos.setText(""+quantidadeDeEpisodiosAssistidos);
+    }
+
+    public void cancelarCadastro(View view) {
         finish();
     }
 

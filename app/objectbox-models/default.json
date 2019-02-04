@@ -53,7 +53,12 @@
           "name": "episodiosAssistidos"
         }
       ],
-      "relations": []
+      "relations": [
+        {
+          "id": "12:2132253842309027846",
+          "name": "anotacoes"
+        }
+      ]
     },
     {
       "id": "3:6407914681331994751",
@@ -160,7 +165,7 @@
   ],
   "lastEntityId": "6:496644304900519181",
   "lastIndexId": "2:5702085462772000224",
-  "lastRelationId": "11:7166448522621944531",
+  "lastRelationId": "12:2132253842309027846",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
