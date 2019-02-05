@@ -16,22 +16,22 @@ public class Controle {
     private String erro;
     private static long idUsuarioLogado;
     private static long idDoAnimeSendoEditado;
-    private static boolean ehEdicao;
+    private static boolean isEdicao;
 
     public Controle() {
+    }
+
+    public boolean isEdicao() {
+        return isEdicao;
+    }
+
+    public void setIsEdicao(boolean isEdicao) {
+        Controle.isEdicao = isEdicao;
     }
 
     public Anime getAnimeSendoEditado() {
         Anime anime = animeBox.get(idDoAnimeSendoEditado);
         return anime;
-    }
-
-    public boolean isEhEdicao() {
-        return ehEdicao;
-    }
-
-    public void setEhEdicao(boolean ehEdicao) {
-        Controle.ehEdicao = ehEdicao;
     }
 
     public long getIdDoAnimeSendoEditado() {
@@ -95,7 +95,7 @@ public class Controle {
 
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
 
-        if (isEhEdicao()) {
+        if (isEdicao()) {
             anime = getAnimeSendoEditado();
 
             // remover o anime da lista status dele buscando ele pelo nome

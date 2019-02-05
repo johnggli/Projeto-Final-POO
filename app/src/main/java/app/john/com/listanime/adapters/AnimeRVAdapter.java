@@ -124,7 +124,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     public void editarAnime() {
         // Toast.makeText(context, "" + controle.getIdDoAnimeSendoEditado(), Toast.LENGTH_SHORT).show();
         myDialog.dismiss();
-        controle.setEhEdicao(true);
+        controle.setIsEdicao(true);
         context.startActivity(new Intent(context, CadastrarAnime.class));
     }
 }

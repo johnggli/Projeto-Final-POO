@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ import java.util.List;
 import app.john.com.listanime.R;
 import app.john.com.listanime.intermediario.Controle;
 
-public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DialogExcluir.DialogExcluirAnimeListener {
 
     private EditText tituloDoAnime, nomeDoEstudio, anoDeExibicao, totalDeEpisodios, nomeDoDiretor,
             descricao;
@@ -71,7 +72,9 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         episodiosAssistidos = findViewById(R.id.txtEpisodiosAssistidos);
         quantidadeDeEpisodiosAssistidos = 0;
 
-        if (controle.isEhEdicao()) {
+        if (controle.isEdicao()) {
+            getSupportActionBar().setTitle("Editar Anime");
+
             tituloDoAnime.setText(controle.getAnimeSendoEditado().getTitulo());
             nomeDoEstudio.setText(controle.getAnimeSendoEditado().getEstudio());
             anoDeExibicao.setText("" + controle.getAnimeSendoEditado().getAnoDeExibicao());
@@ -81,16 +84,22 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             episodiosAssistidos.setText("" + controle.getAnimeSendoEditado().getEpisodiosAssistidos());
             ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
             spinnerStatus.setSelection(controle.getPosicaoStatus());
+            quantidadeDeEpisodiosAssistidos = controle.getAnimeSendoEditado().getEpisodiosAssistidos();
+
+            btnCancelarOuExcluir.setText("EXCLUIR ANIME");
 
             btnCancelarOuExcluir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    controle.excluirAnime();
-                    mostrarMensagem("Anime excluido");
-                    finish();
+                    abrirDialogExcluir();
                 }
             });
         }
+    }
+
+    public void abrirDialogExcluir() {
+        DialogExcluir dialogExcluir = new DialogExcluir();
+        dialogExcluir.show(getSupportFragmentManager(), "dialog excluir");
     }
 
     public void adiconarAnime(View view) {
@@ -115,13 +124,17 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void incrementar(View view) {
-        quantidadeDeEpisodiosAssistidos++;
-        episodiosAssistidos.setText(""+quantidadeDeEpisodiosAssistidos);
+        if (quantidadeDeEpisodiosAssistidos < Integer.parseInt(totalDeEpisodios.getText().toString())) {
+            quantidadeDeEpisodiosAssistidos++;
+        }
+        episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
     }
 
     public void decrementar(View view) {
-        quantidadeDeEpisodiosAssistidos--;
-        episodiosAssistidos.setText(""+quantidadeDeEpisodiosAssistidos);
+        if (quantidadeDeEpisodiosAssistidos > 0) {
+            quantidadeDeEpisodiosAssistidos--;
+        }
+        episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
     }
 
     public void cancelarCadastro(View view) {
@@ -140,5 +153,12 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
 
     public void mostrarMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void excluirAnime() {
+        controle.excluirAnime();
+        mostrarMensagem("Anime excluído com sucesso!");
+        finish();
     }
 }

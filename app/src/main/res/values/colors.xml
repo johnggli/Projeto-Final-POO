@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#2f2f2f</color>
     <color name="colorAccent">#52b7f8</color>
     <color name="brancoApp">#fafafa</color>
+    <color name="excluir">#ef3030</color>
 </resources>
