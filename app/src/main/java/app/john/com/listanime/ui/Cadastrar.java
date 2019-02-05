@@ -39,17 +39,24 @@ public class Cadastrar extends AppCompatActivity {
 
         // cadastra o usuário
         if (controle.cadastrarUsuario(nome, email, senha)) {
-            mensagem("Usuário cadastrado com sucesso!");
+            mostrarMensagem("Usuário cadastrado com sucesso!");
             controle.logar(email, senha);
             startActivity(new Intent(this, Main.class));
             finish();
         }
         else {
-            mensagem("Email ja cadastrado!");
+            mostrarMensagem(controle.getErro());
         }
     }
 
-    public void mensagem (String mensagem) {
+    public void mostrarMensagem (String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, Login.class));
+        finish();
     }
 }

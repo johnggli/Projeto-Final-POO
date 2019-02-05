@@ -39,9 +39,11 @@ public class Login extends AppCompatActivity {
 
     public void abrirTelaEntrar(View view){
         startActivity(new Intent(this, Entrar.class));
+        finish();
     }
 
     public void abrirTelaCadastrar(View view){
         startActivity(new Intent(this, Cadastrar.class));
+        finish();
     }
 }

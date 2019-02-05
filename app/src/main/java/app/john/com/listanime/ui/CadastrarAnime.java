@@ -74,16 +74,22 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
     public void adiconarAnime(View view) {
         String titulo = tituloDoAnime.getText().toString();
         String estudio = nomeDoEstudio.getText().toString();
-        int ano = Integer.parseInt(anoDeExibicao.getText().toString());
-        int episodiosTotais = Integer.parseInt(totalDeEpisodios.getText().toString());
+        String ano = anoDeExibicao.getText().toString();
+        String episodiosTotais = totalDeEpisodios.getText().toString();
+
         String diretor = nomeDoDiretor.getText().toString();
         String descr = descricao.getText().toString();
         int pontuacao = nota;
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
-        controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status, diretor, descr, pontuacao);
-
-        finish();
+        if (controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status,
+                diretor, descr, pontuacao)) {
+            mostrarMensagem("Anime adicionado com sucesso!");
+            finish();
+        }
+        else {
+            mostrarMensagem(controle.getErro());
+        }
     }
 
     public void incrementar(View view) {
@@ -108,5 +114,9 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void mostrarMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
 }

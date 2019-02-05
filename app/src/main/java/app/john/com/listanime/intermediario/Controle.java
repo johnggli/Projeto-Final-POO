@@ -12,19 +12,29 @@ public class Controle {
     private BoxStore boxStore = App.getApp().getBoxStore();
     private Box<Usuario> usuarioBox = boxStore.boxFor(Usuario.class);
     private Box<Anime> animeBox = boxStore.boxFor(Anime.class);
+    private String erro;
     private static long idUsuarioLogado;
 
     public Controle() {
     }
 
     public boolean cadastrarUsuario(String nome, String email, String senha) {
+        // Verifica se os campos estão preenchidos.
+        if ((nome.length() == 0) || (email.length() == 0) || (senha.length() == 0)) {
+            erro = "Ooops! Existem campos vazios!";
+            return false;
+        }
+
+        // Verifica se o email ja está cadastrado no banco de dados.
         for (Usuario usuario : usuarioBox.getAll()){
             if (usuario.getEmail().equals(email)){
+                erro = "Ooops! Este endereço de e-mail ja está em uso.";
                 return false;
             }
         }
-        Usuario novo_usuario = new Usuario(nome, email, senha);
-        usuarioBox.put(novo_usuario);
+
+        Usuario novoUsuario = new Usuario(nome, email, senha);
+        usuarioBox.put(novoUsuario);
         return true;
     }
 
@@ -32,9 +42,7 @@ public class Controle {
         for (Usuario usuario: usuarioBox.getAll()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
                 idUsuarioLogado = usuario.id;
-
                 logarUsuario();
-
                 return true;
             }
         }
@@ -47,9 +55,18 @@ public class Controle {
         usuarioBox.put(usuario);
     }
 
-    public void cadastrarAnime(String titulo, String estudio, int ano, int episodiosTotais,
+    public boolean cadastrarAnime(String titulo, String estudio, String ano, String episodiosTotais,
                                int episodiosAssistidos, String status, String diretor, String descricao, int pontuacao) {
-        Anime anime = new Anime(titulo, estudio, ano, episodiosTotais, episodiosAssistidos, diretor, descricao, pontuacao);
+        // Verifica se os campos obrigatórios estão preenchidos.
+        if ((titulo.length() == 0) || (estudio.length() == 0) || (ano.length() == 0) || (episodiosTotais.length() == 0)) {
+            erro = "Ooops! Preencha os campos obrigatórios!";
+            return false;
+        }
+
+        // Converte ano e episodios totais para inteiro.
+        int anoDeExibicao = Integer.parseInt(ano);
+        int totalDeEpisodios = Integer.parseInt(episodiosTotais);
+        Anime anime = new Anime(titulo, estudio, anoDeExibicao, totalDeEpisodios, episodiosAssistidos, diretor, descricao, pontuacao);
 
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
 
@@ -66,6 +83,7 @@ public class Controle {
             usuario.animesDescartados.add(anime);
         }
         usuarioBox.put(usuario);
+        return true;
     }
 
     public Usuario getUsuarioLogado() {
@@ -86,5 +104,13 @@ public class Controle {
             }
         }
         return false;
+    }
+
+    public String getErro() {
+        return erro;
+    }
+
+    public void setErro(String erro) {
+        this.erro = erro;
     }
 }

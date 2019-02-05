@@ -47,4 +47,11 @@ public class Entrar extends AppCompatActivity {
     public void mensagem (String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, Login.class));
+        finish();
+    }
 }
