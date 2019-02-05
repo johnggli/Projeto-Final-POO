@@ -22,6 +22,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
 
     private Context context;
     private ToMany<Anime> animes;
+    private Dialog myDialog;
 
     public AnimeRVAdapter(Context context, ToMany<Anime> animes) {
         this.context = context;
@@ -37,6 +38,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         private TextView episodiosTotais;
         private TextView nota;
         private ProgressBar progressBar;
+        private LinearLayout itemAnime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -49,6 +51,8 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
             nota = itemView.findViewById(R.id.txtNota);
 
             progressBar = itemView.findViewById(R.id.barraDeProgresso);
+
+            itemAnime = itemView.findViewById(R.id.anime_item);
         }
     }
 
@@ -59,6 +63,23 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         view = LayoutInflater.from(context).inflate(R.layout.item_assistindo, viewGroup, false);
 
         final MyViewHolder vHolder = new MyViewHolder(view);
+
+        // Iniciando Dialog.
+        myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.dialog_anime);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        vHolder.itemAnime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView dialogNomeAnime = myDialog.findViewById(R.id.dialogNomeAnime);
+                TextView dialogEstudio = myDialog.findViewById(R.id.dialogEstudio);
+                dialogNomeAnime.setText(animes.get(vHolder.getAdapterPosition()).getTitulo());
+                dialogEstudio.setText(animes.get(vHolder.getAdapterPosition()).getEstudio());
+
+                myDialog.show();
+            }
+        });
 
         return vHolder;
     }

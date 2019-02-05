@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brancoApp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/background_header"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+        </LinearLayout>
+        
+        <TextView
+            android:id="@+id/dialogNomeAnime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Anime"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/dialogEstudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estúdio"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/dialogBotaoEditar"
+            android:paddingLeft="20dp"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/ic_edit"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="EDITAR"
+            android:textStyle="bold"
+            android:textColor="@color/brancoApp"
+            android:gravity="center"
+            android:background="@drawable/rounded_button"
+            android:textSize="16sp"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/dialogBotaoAnotacoes"
+            android:paddingLeft="20dp"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/ic_comment"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="ANOTAÇÕES"
+            android:textStyle="bold"
+            android:textColor="@color/brancoApp"
+            android:gravity="center"
+            android:background="@drawable/rounded_button2"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            tools:ignore="RtlCompat" />
+        
+    </LinearLayout>
+
+</RelativeLayout>
