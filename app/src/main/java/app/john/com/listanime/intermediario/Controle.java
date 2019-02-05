@@ -224,4 +224,38 @@ public class Controle {
         }
         return false;
     }
+
+    public void excluirAnime() {
+        Usuario usuario = getUsuarioLogado();
+        Anime anime = getAnimeSendoEditado();
+
+        if (contemAnimeNaLista(usuario.animesAssistindo)) {
+            usuario.animesAssistindo.remove(anime);
+        }
+        else if (contemAnimeNaLista(usuario.animesConcluidos)) {
+            usuario.animesConcluidos.remove(anime);
+        }
+        else if (contemAnimeNaLista(usuario.animesPretendoAssistir)) {
+            usuario.animesPretendoAssistir.remove(anime);
+        }
+        else if (contemAnimeNaLista(usuario.animesDescartados)) {
+            usuario.animesDescartados.remove(anime);
+        }
+        animeBox.remove(anime.id);
+    }
+
+    public int getPosicaoStatus() {
+        int posicao = 0;
+        Usuario usuario = getUsuarioLogado();
+        if (contemAnimeNaLista(usuario.animesConcluidos)) {
+            posicao = 1;
+        }
+        else if (contemAnimeNaLista(usuario.animesPretendoAssistir)) {
+            posicao = 2;
+        }
+        else if (contemAnimeNaLista(usuario.animesDescartados)) {
+            posicao = 3;
+        }
+        return posicao;
+    }
 }

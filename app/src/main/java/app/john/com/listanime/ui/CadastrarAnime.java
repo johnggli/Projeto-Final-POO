@@ -61,6 +61,7 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+        btnCancelarOuExcluir = findViewById(R.id.btnCancelarOuExcluir);
         tituloDoAnime = findViewById(R.id.txtTitulo);
         nomeDoEstudio = findViewById(R.id.txtEstudio);
         anoDeExibicao = findViewById(R.id.txtAno);
@@ -79,6 +80,16 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             descricao.setText(controle.getAnimeSendoEditado().getDescricao());
             episodiosAssistidos.setText("" + controle.getAnimeSendoEditado().getEpisodiosAssistidos());
             ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
+            spinnerStatus.setSelection(controle.getPosicaoStatus());
+
+            btnCancelarOuExcluir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    controle.excluirAnime();
+                    mostrarMensagem("Anime excluido");
+                    finish();
+                }
+            });
         }
     }
 
