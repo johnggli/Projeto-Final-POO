@@ -69,6 +69,10 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         descricao = findViewById(R.id.txtDescricao);
         episodiosAssistidos = findViewById(R.id.txtEpisodiosAssistidos);
         quantidadeDeEpisodiosAssistidos = 0;
+
+        if (controle.isEhEdicao()) {
+            tituloDoAnime.setText(controle.getAnimeSendoEditado().getTitulo());
+        }
     }
 
     public void adiconarAnime(View view) {

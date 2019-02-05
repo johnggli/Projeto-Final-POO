@@ -2,6 +2,7 @@ package app.john.com.listanime.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.john.com.listanime.R;
+import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
+import app.john.com.listanime.ui.CadastrarAnime;
+import app.john.com.listanime.ui.Login;
 import io.objectbox.relation.ToMany;
 
 public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHolder> {
@@ -23,6 +27,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     private Context context;
     private ToMany<Anime> animes;
     private Dialog myDialog;
+    private Controle controle;
 
     public AnimeRVAdapter(Context context, ToMany<Anime> animes) {
         this.context = context;
@@ -64,6 +69,8 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
 
         final MyViewHolder vHolder = new MyViewHolder(view);
 
+        controle = new Controle();
+
         // Iniciando Dialog.
         myDialog = new Dialog(context);
         myDialog.setContentView(R.layout.dialog_anime);
@@ -74,8 +81,18 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
             public void onClick(View v) {
                 TextView dialogNomeAnime = myDialog.findViewById(R.id.dialogNomeAnime);
                 TextView dialogEstudio = myDialog.findViewById(R.id.dialogEstudio);
+                TextView dialogBotaoEditar = myDialog.findViewById(R.id.dialogBotaoEditar);
                 dialogNomeAnime.setText(animes.get(vHolder.getAdapterPosition()).getTitulo());
                 dialogEstudio.setText(animes.get(vHolder.getAdapterPosition()).getEstudio());
+
+                controle.setIdDoAnimeSendoEditado(animes.get(vHolder.getAdapterPosition()));
+
+                dialogBotaoEditar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editarAnime();
+                    }
+                });
 
                 myDialog.show();
             }
@@ -102,5 +119,12 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return animes.size();
+    }
+
+    public void editarAnime() {
+        // Toast.makeText(context, "" + controle.getIdDoAnimeSendoEditado(), Toast.LENGTH_SHORT).show();
+        myDialog.dismiss();
+        controle.setEhEdicao(true);
+        context.startActivity(new Intent(context, CadastrarAnime.class));
     }
 }

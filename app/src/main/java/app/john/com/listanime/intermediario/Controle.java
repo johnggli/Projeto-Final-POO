@@ -14,8 +14,31 @@ public class Controle {
     private Box<Anime> animeBox = boxStore.boxFor(Anime.class);
     private String erro;
     private static long idUsuarioLogado;
+    private static long idDoAnimeSendoEditado;
+    private static boolean ehEdicao;
 
     public Controle() {
+    }
+
+    public Anime getAnimeSendoEditado() {
+        Anime anime = animeBox.get(idDoAnimeSendoEditado);
+        return anime;
+    }
+
+    public boolean isEhEdicao() {
+        return ehEdicao;
+    }
+
+    public void setEhEdicao(boolean ehEdicao) {
+        Controle.ehEdicao = ehEdicao;
+    }
+
+    public long getIdDoAnimeSendoEditado() {
+        return idDoAnimeSendoEditado;
+    }
+
+    public void setIdDoAnimeSendoEditado(Anime anime) {
+        Controle.idDoAnimeSendoEditado = anime.id;
     }
 
     public boolean cadastrarUsuario(String nome, String email, String senha) {

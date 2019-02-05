@@ -120,6 +120,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     public void cadastrarAnime(View view){
+        controle.setEhEdicao(false);
         startActivity(new Intent(this, CadastrarAnime.class));
     }
 
