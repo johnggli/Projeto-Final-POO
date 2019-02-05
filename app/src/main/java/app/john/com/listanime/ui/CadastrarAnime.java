@@ -72,6 +72,13 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
 
         if (controle.isEhEdicao()) {
             tituloDoAnime.setText(controle.getAnimeSendoEditado().getTitulo());
+            nomeDoEstudio.setText(controle.getAnimeSendoEditado().getEstudio());
+            anoDeExibicao.setText("" + controle.getAnimeSendoEditado().getAnoDeExibicao());
+            totalDeEpisodios.setText("" + controle.getAnimeSendoEditado().getEpisodiosTotais());
+            nomeDoDiretor.setText(controle.getAnimeSendoEditado().getDiretor());
+            descricao.setText(controle.getAnimeSendoEditado().getDescricao());
+            episodiosAssistidos.setText("" + controle.getAnimeSendoEditado().getEpisodiosAssistidos());
+            ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
         }
     }
 

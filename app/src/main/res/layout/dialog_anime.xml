@@ -43,7 +43,7 @@
             android:textAlignment="textStart"
             android:drawableLeft="@drawable/ic_edit"
             android:drawablePadding="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_width="match_parent"
