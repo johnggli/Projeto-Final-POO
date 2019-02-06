@@ -11,6 +11,7 @@ public class Usuario {
     private long id;
     private String nome, email, senha;
     private ToMany<Anime> animes;
+    private ToMany<Top> tops;
     private boolean logado;
 
     // Construtores
@@ -32,6 +33,14 @@ public class Usuario {
 
     public void removerAnime(Anime anime) {
         animes.remove(anime);
+    }
+
+    public void adicionarTop(Top top) {
+        tops.add(top);
+    }
+
+    public void removerTop(Top top) {
+        tops.remove(top);
     }
 
     // Métodos Get/Set
@@ -77,5 +86,9 @@ public class Usuario {
 
     public ToMany<Anime> getAnimes() {
         return animes;
+    }
+
+    public ToMany<Top> getTops() {
+        return tops;
     }
 }

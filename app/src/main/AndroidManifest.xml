@@ -23,7 +23,7 @@
         <activity
             android:name=".ui.Login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.Entrar"
             android:screenOrientation="portrait" />
@@ -40,12 +40,17 @@
             android:label="Adicionar Anime"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.MeusNumeros" />
-        <activity android:name=".ui.MeusTops" />
-        <activity android:name=".ui.PretendoAssistir"
-            android:label="Pretendo Assistir"/>
+        <activity
+            android:name=".ui.MeusTops"
+            android:label="Meus Top&apos;s" />
+        <activity
+            android:name=".ui.PretendoAssistir"
+            android:label="Pretendo Assistir" />
         <activity android:name=".ui.AnimesDescartados" />
         <activity android:name=".ui.Notificacoes" />
         <activity android:name=".ui.Configuracoes" />
+        <activity android:name=".ui.TelaTop"
+            android:label="Adicionar Top"></activity>
     </application>
 
 </manifest>

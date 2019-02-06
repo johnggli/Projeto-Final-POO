@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.MeusTops">
+    android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMeusTops"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_tops"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tela meus tops"/>
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:onClick="novoTop"
+        app:srcCompat="@drawable/ic_add"
+        android:focusable="true" />
+</android.support.design.widget.CoordinatorLayout>

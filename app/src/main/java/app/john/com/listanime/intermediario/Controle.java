@@ -3,6 +3,7 @@ package app.john.com.listanime.intermediario;
 import android.widget.ImageView;
 
 import app.john.com.listanime.modelos.Anime;
+import app.john.com.listanime.modelos.Top;
 import app.john.com.listanime.modelos.Usuario;
 import app.john.com.listanime.persistencia.App;
 import app.john.com.listanime.ui.Main;
@@ -14,12 +15,18 @@ public class Controle {
     private BoxStore boxStore = App.getApp().getBoxStore();
     private Box<Usuario> usuarioBox = boxStore.boxFor(Usuario.class);
     private Box<Anime> animeBox = boxStore.boxFor(Anime.class);
+    private Box<Top> topBox = boxStore.boxFor(Top.class);
     private String erro;
     private static long idUsuarioLogado;
     private static long idDoAnimeSendoEditado;
+    private static long idDoTopSendoEditado;
     private static boolean isEdicao;
 
     public Controle() {
+    }
+
+    public void setIdDoTopSendoEditado(Top top) {
+        Controle.idDoTopSendoEditado = top.getId();
     }
 
     public boolean isEdicao() {
@@ -32,6 +39,10 @@ public class Controle {
 
     public Anime getAnimeSendoEditado() {
         return animeBox.get(idDoAnimeSendoEditado);
+    }
+
+    public Top getTopSendoEditado() {
+        return topBox.get(idDoTopSendoEditado);
     }
 
     public long getIdDoAnimeSendoEditado() {
@@ -77,6 +88,34 @@ public class Controle {
         Usuario usuario = usuarioBox.get(idUsuarioLogado);
         usuario.setLogado(true);
         usuarioBox.put(usuario);
+    }
+
+    public boolean cadastrarTop(String titulo) {
+        if (titulo.length() == 0) {
+            erro = "Ooops! Preecha o título do top.";
+            return false;
+        }
+
+        Top top;
+
+        Usuario usuario = getUsuarioLogado();
+
+        if (isEdicao()) {
+            top = getTopSendoEditado();
+
+            top.setTituloDoTop(titulo);
+
+            topBox.put(top);
+
+        }
+        else {
+            top = new Top(titulo);
+        }
+
+        usuario.adicionarTop(top);
+        usuarioBox.put(usuario);
+
+        return true;
     }
 
     public boolean cadastrarAnime(String titulo, String estudio, String ano, String episodiosTotais,
@@ -142,24 +181,7 @@ public class Controle {
             anime.setPontuacao(pontuacao);
             anime.setFavorito(favorito);
 
-            // anime.getStatus.equals(status)...
-
             animeBox.put(anime);
-
-//            if (anime.getStatus != status) {
-//                if (getStatus.equals("Assistindo")) {
-//                    usuario.animesAssistindo.remove(anime);
-//                }
-//                else if (getStatus.equals("Concluído")) {
-//                    usuario.animesConcluidos.add(anime);
-//                }
-//                else if (getStatus.equals("Pretendo assistir")) {
-//                    usuario.animesPretendoAssistir.add(anime);
-//                }
-//                else if (getStatus.equals("Descartado")) {
-//                    usuario.animesDescartados.add(anime);
-//                }
-//            }
 
         }
         else {
