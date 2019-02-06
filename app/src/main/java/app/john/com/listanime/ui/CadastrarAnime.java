@@ -134,7 +134,8 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         int pontuacao = nota;
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
-        if (quantidadeAssistidos < Integer.parseInt(episodiosTotais)) {
+        if ((quantidadeAssistidos > 0) && (quantidadeAssistidos < Integer.parseInt(episodiosTotais))
+                && !status.equals("Descartado")) {
             status = "Assistindo";
         }
 

@@ -23,7 +23,6 @@ public class Favoritos extends Fragment {
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
-    private List<Anime> animes;
 
     public Favoritos() {
 
@@ -36,7 +35,13 @@ public class Favoritos extends Fragment {
 
         rvAnimes = view.findViewById(R.id.rvFavoritos);
 
-        animes = new ArrayList<>();
+        carregarDados();
+
+        return view;
+    }
+
+    private void carregarDados() {
+        List<Anime> animes = new ArrayList<>();
 
         for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
             if (anime.isFavorito()) {
@@ -48,8 +53,6 @@ public class Favoritos extends Fragment {
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
-
-        return view;
     }
 
     @Override
@@ -63,17 +66,6 @@ public class Favoritos extends Fragment {
     public void onResume() {
         super.onResume();
 
-        animes = new ArrayList<>();
-
-        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
-            if (anime.isFavorito()) {
-                animes.add(anime);
-            }
-        }
-
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
-
-        rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvAnimes.setAdapter(adapter);
+        carregarDados();
     }
 }

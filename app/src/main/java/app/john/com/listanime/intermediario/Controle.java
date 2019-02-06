@@ -87,6 +87,11 @@ public class Controle {
             return false;
         }
 
+        if (Integer.parseInt(episodiosTotais) == 0) {
+            erro = "Ooops! O anime deve ter pelo menos um episódio.";
+            return false;
+        }
+
         // Converte ano e episodios totais para inteiro.
         int anoDeExibicao = Integer.parseInt(ano);
         int totalDeEpisodios = Integer.parseInt(episodiosTotais);

@@ -23,14 +23,17 @@ import app.john.com.listanime.modelos.Anime;
 
 public class Assistindo extends Fragment {
 
+    // Atributos
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
-    private List<Anime> animes;
+
+    // Construtor
     public Assistindo() {
 
     }
 
+    // Métodos
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +41,13 @@ public class Assistindo extends Fragment {
 
         rvAnimes = view.findViewById(R.id.rvAssistindo);
 
-        animes = new ArrayList<>();
+        carregarDados();
+
+        return view;
+    }
+
+    private void carregarDados() {
+        List<Anime> animes = new ArrayList<>();
 
         for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
             if (anime.getStatus().equals("Assistindo")) {
@@ -50,8 +59,6 @@ public class Assistindo extends Fragment {
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
-
-        return view;
     }
 
     @Override
@@ -65,17 +72,6 @@ public class Assistindo extends Fragment {
     public void onResume() {
         super.onResume();
 
-        animes = new ArrayList<>();
-
-        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
-            if (anime.getStatus().equals("Assistindo")) {
-                animes.add(anime);
-            }
-        }
-
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
-
-        rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvAnimes.setAdapter(adapter);
+        carregarDados();
     }
 }
