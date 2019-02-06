@@ -184,16 +184,19 @@
 
                         <Button
                             android:id="@+id/btn_menos"
-                            android:layout_width="40dp"
-                            android:layout_height="20dp"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
                             android:layout_marginLeft="8dp"
                             android:background="@drawable/rounded_button"
                             android:onClick="decrementar"
-                            android:text="-" />
+                            android:text="-"
+                            android:textSize="20dp"
+                            android:textColor="@color/brancoApp"/>
 
                         <TextView
                             android:id="@+id/txtEpisodiosAssistidos"
-                            android:layout_marginLeft="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
@@ -202,12 +205,13 @@
 
                         <Button
                             android:id="@+id/btn_mais"
-                            android:layout_width="40dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="8dp"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/rounded_button"
                             android:onClick="incrementar"
-                            android:text="+" />
+                            android:text="+"
+                            android:textSize="20dp"
+                            android:textColor="@color/brancoApp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -239,12 +243,12 @@
                         android:id="@+id/btnFavorito"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="8dp"
                         android:textSize="16sp"
-                        android:textColor="@color/brancoApp"
-                        android:background="@drawable/rounded_button"
+                        android:textColor="@color/colorAccent"
+                        android:background="@drawable/border_button2"
                         android:text="Adicionar aos favoritos" />
 
                 </LinearLayout>

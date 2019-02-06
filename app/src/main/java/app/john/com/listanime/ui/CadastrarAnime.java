@@ -130,8 +130,21 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
 
         String diretor = nomeDoDiretor.getText().toString();
         String descr = descricao.getText().toString();
+
         int pontuacao = nota;
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
+
+        if (quantidadeAssistidos < Integer.parseInt(episodiosTotais)) {
+            status = "Assistindo";
+        }
+
+        if (status.equals("Concluído")) {
+            quantidadeAssistidos = Integer.parseInt(episodiosTotais);
+        }
+
+        if (quantidadeAssistidos == Integer.parseInt(episodiosTotais)) {
+            status = "Concluído";
+        }
 
         if (controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status,
                 diretor, descr, pontuacao, favorito)) {

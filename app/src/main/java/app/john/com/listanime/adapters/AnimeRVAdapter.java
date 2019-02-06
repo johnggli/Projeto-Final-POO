@@ -46,13 +46,14 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         private TextView episodiosAssistidos;
         private TextView episodiosTotais;
         private TextView nota;
-        private ImageView iconeFavoritado;
+        private ImageView img_status, iconeFavoritado;
         private ProgressBar progressBar;
         private LinearLayout itemAnime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            img_status = itemView.findViewById(R.id.img_status);
             nomeDoAnime = itemView.findViewById(R.id.txtNomeAnime);
             nomeDoEstudio = itemView.findViewById(R.id.txtNomeEstudio);
             anoDeExibicao = itemView.findViewById(R.id.txtAno);
@@ -117,6 +118,10 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         myViewHolder.episodiosAssistidos.setText("" + animes.get(i).getEpisodiosAssistidos());
         myViewHolder.episodiosTotais.setText("" + animes.get(i).getEpisodiosTotais());
         myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
+
+        if (animes.get(i).getStatus().equals("Concluído")) {
+            myViewHolder.img_status.setImageResource(R.mipmap.icone_concluido);
+        }
 
         if (animes.get(i).isFavorito()) {
             myViewHolder.iconeFavoritado.setVisibility(View.VISIBLE);
