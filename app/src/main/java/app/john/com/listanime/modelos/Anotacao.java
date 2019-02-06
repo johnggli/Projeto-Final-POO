@@ -7,12 +7,19 @@ import io.objectbox.annotation.Id;
 public class Anotacao {
 
     @Id
-    public long id;
-
+    private long id;
     private String anotacao;
 
     public Anotacao() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getAnotacao() {

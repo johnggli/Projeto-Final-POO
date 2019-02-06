@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
@@ -21,6 +24,7 @@ public class Concluido extends Fragment {
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
+    private List<Anime> animes;
 
     public Concluido() {
 
@@ -33,7 +37,15 @@ public class Concluido extends Fragment {
 
         rvAnimes = view.findViewById(R.id.rvConcluido);
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesConcluidos);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.getStatus().equals("Concluído")) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
@@ -52,7 +64,15 @@ public class Concluido extends Fragment {
     public void onResume() {
         super.onResume();
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesConcluidos);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.getStatus().equals("Concluído")) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);

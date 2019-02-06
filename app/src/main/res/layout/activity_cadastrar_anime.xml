@@ -234,6 +234,19 @@
                             android:numStars="5" />
                     </LinearLayout>
 
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btnFavorito"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/brancoApp"
+                        android:background="@drawable/rounded_button"
+                        android:text="Adicionar aos favoritos" />
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -267,8 +280,8 @@
                         android:text="Salvar" />
 
                     <Button
-                        android:onClick="cancelarCadastro"
-                        android:id="@+id/btnCancelarOuExcluir"
+                        android:onClick="cancelarMudancas"
+                        android:id="@+id/btnCancelar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -279,6 +292,20 @@
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button2"
                         android:text="Cancelar" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:onClick="abrirDialogExcluir"
+                        android:id="@+id/btnExcluir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/brancoApp"
+                        android:background="@drawable/rounded_button3"
+                        android:text="Excluir Anime" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

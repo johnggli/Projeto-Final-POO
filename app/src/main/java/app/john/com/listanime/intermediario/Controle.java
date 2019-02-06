@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.modelos.Usuario;
 import app.john.com.listanime.persistencia.App;
+import app.john.com.listanime.ui.Main;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.relation.ToMany;
@@ -30,8 +31,7 @@ public class Controle {
     }
 
     public Anime getAnimeSendoEditado() {
-        Anime anime = animeBox.get(idDoAnimeSendoEditado);
-        return anime;
+        return animeBox.get(idDoAnimeSendoEditado);
     }
 
     public long getIdDoAnimeSendoEditado() {
@@ -39,7 +39,7 @@ public class Controle {
     }
 
     public void setIdDoAnimeSendoEditado(Anime anime) {
-        Controle.idDoAnimeSendoEditado = anime.id;
+        Controle.idDoAnimeSendoEditado = anime.getId();
     }
 
     public boolean cadastrarUsuario(String nome, String email, String senha) {
@@ -65,7 +65,7 @@ public class Controle {
     public boolean logar(String email, String senha) {
         for (Usuario usuario: usuarioBox.getAll()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
-                idUsuarioLogado = usuario.id;
+                idUsuarioLogado = usuario.getId();
                 logarUsuario();
                 return true;
             }
@@ -80,7 +80,7 @@ public class Controle {
     }
 
     public boolean cadastrarAnime(String titulo, String estudio, String ano, String episodiosTotais,
-                               int episodiosAssistidos, String status, String diretor, String descricao, int pontuacao) {
+                               int episodiosAssistidos, String status, String diretor, String descricao, int pontuacao, boolean favorito) {
         // Verifica se os campos obrigatórios estão preenchidos.
         if ((titulo.length() == 0) || (estudio.length() == 0) || (ano.length() == 0) || (episodiosTotais.length() == 0)) {
             erro = "Ooops! Preencha os campos obrigatórios!";
@@ -99,51 +99,43 @@ public class Controle {
             anime = getAnimeSendoEditado();
 
             // remover o anime da lista status dele buscando ele pelo nome
-            if (contemAnimeNaLista(usuario.animesAssistindo)) {
-                if (status.equals("Assistindo")) {
-                    status = "StatusNaoAlterado";
-                }
-                else {
-                    usuario.animesAssistindo.remove(anime);
-                    animeBox.remove(anime.id);
-                }
-            }
-            else if (contemAnimeNaLista(usuario.animesConcluidos)) {
-                if (status.equals("Concluído")) {
-                    status = "StatusNaoAlterado";
-                }
-                else {
-                    usuario.animesConcluidos.remove(anime);
-                    animeBox.remove(anime.id);
-                }
-            }
-            else if (contemAnimeNaLista(usuario.animesPretendoAssistir)) {
-                if (status.equals("Pretendo assistir")) {
-                    status = "StatusNaoAlterado";
-                }
-                else {
-                    usuario.animesPretendoAssistir.remove(anime);
-                    animeBox.remove(anime.id);
-                }
-            }
-            else if (contemAnimeNaLista(usuario.animesDescartados)) {
-                if (status.equals("Descartado")) {
-                    status = "StatusNaoAlterado";
-                }
-                else {
-                    usuario.animesDescartados.remove(anime);
-                    animeBox.remove(anime.id);
-                }
+            switch (anime.getStatus()) {
+                case "Assistindo":
+                    if (!status.equals("Assistindo")) {
+                        usuario.removerAnime(anime);
+                        animeBox.remove(anime.getId());
+                    }
+                    break;
+                case "Concluído":
+                    if (!status.equals("Concluído")) {
+                        usuario.removerAnime(anime);
+                        animeBox.remove(anime.getId());
+                    }
+                    break;
+                case "Pretendo assistir":
+                    if (!status.equals("Pretendo assistir")) {
+                        usuario.removerAnime(anime);
+                        animeBox.remove(anime.getId());
+                    }
+                    break;
+                case "Descartado":
+                    if (!status.equals("Descartado")) {
+                        usuario.removerAnime(anime);
+                        animeBox.remove(anime.getId());
+                    }
+                    break;
             }
 
             anime.setTitulo(titulo);
             anime.setEstudio(estudio);
             anime.setAnoDeExibicao(anoDeExibicao);
             anime.setEpisodiosTotais(totalDeEpisodios);
+            anime.setStatus(status);
             anime.setEpisodiosAssistidos(episodiosAssistidos);
             anime.setDiretor(diretor);
             anime.setDescricao(descricao);
             anime.setPontuacao(pontuacao);
+            anime.setFavorito(favorito);
 
             // anime.getStatus.equals(status)...
 
@@ -166,23 +158,10 @@ public class Controle {
 
         }
         else {
-            anime = new Anime(titulo, estudio, anoDeExibicao, totalDeEpisodios, episodiosAssistidos, diretor, descricao, pontuacao);
+            anime = new Anime(titulo, estudio, status, diretor, descricao, anoDeExibicao, totalDeEpisodios, episodiosAssistidos, pontuacao, false);
         }
 
-        switch (status) {
-            case "Assistindo":
-                usuario.animesAssistindo.add(anime);
-                break;
-            case "Concluído":
-                usuario.animesConcluidos.add(anime);
-                break;
-            case "Pretendo assistir":
-                usuario.animesPretendoAssistir.add(anime);
-                break;
-            case "Descartado":
-                usuario.animesDescartados.add(anime);
-                break;
-        }
+        usuario.adicionarAnime(anime);
         usuarioBox.put(usuario);
 
         return true;
@@ -201,7 +180,7 @@ public class Controle {
     public boolean temUsuarioLogado() {
         for (Usuario usuario: usuarioBox.getAll()) {
             if (usuario.getLogado()) {
-                idUsuarioLogado = usuario.id;
+                idUsuarioLogado = usuario.getId();
                 return true;
             }
         }
@@ -216,45 +195,26 @@ public class Controle {
         this.erro = erro;
     }
 
-    public boolean contemAnimeNaLista(ToMany<Anime> lista) {
-        for (Anime anime: lista) {
-            if (anime.getTitulo().equals(getAnimeSendoEditado().getTitulo())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void excluirAnime() {
         Usuario usuario = getUsuarioLogado();
         Anime anime = getAnimeSendoEditado();
 
-        if (contemAnimeNaLista(usuario.animesAssistindo)) {
-            usuario.animesAssistindo.remove(anime);
-        }
-        else if (contemAnimeNaLista(usuario.animesConcluidos)) {
-            usuario.animesConcluidos.remove(anime);
-        }
-        else if (contemAnimeNaLista(usuario.animesPretendoAssistir)) {
-            usuario.animesPretendoAssistir.remove(anime);
-        }
-        else if (contemAnimeNaLista(usuario.animesDescartados)) {
-            usuario.animesDescartados.remove(anime);
-        }
-        animeBox.remove(anime.id);
+        usuario.removerAnime(anime);
+        animeBox.remove(anime.getId());
     }
 
     public int getPosicaoStatus() {
         int posicao = 0;
-        Usuario usuario = getUsuarioLogado();
-        if (contemAnimeNaLista(usuario.animesConcluidos)) {
-            posicao = 1;
-        }
-        else if (contemAnimeNaLista(usuario.animesPretendoAssistir)) {
-            posicao = 2;
-        }
-        else if (contemAnimeNaLista(usuario.animesDescartados)) {
-            posicao = 3;
+        switch (getAnimeSendoEditado().getStatus()) {
+            case "Concluído":
+                posicao = 1;
+                break;
+            case "Pretendo assistir":
+                posicao = 2;
+                break;
+            case "Descartado":
+                posicao = 3;
+                break;
         }
         return posicao;
     }

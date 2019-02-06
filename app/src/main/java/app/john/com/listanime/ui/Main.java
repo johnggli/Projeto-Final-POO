@@ -73,6 +73,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         TextView nomeDoUsuario = headView.findViewById(R.id.nomeDoUsuario);
 
         nomeDoUsuario.setText(controle.getUsuarioLogado().getNome());
+
     }
 
     @Override

@@ -10,15 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
+import app.john.com.listanime.modelos.Anime;
 
 public class Favoritos extends Fragment {
 
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
+    private List<Anime> animes;
 
     public Favoritos() {
 
@@ -31,7 +36,15 @@ public class Favoritos extends Fragment {
 
         rvAnimes = view.findViewById(R.id.rvFavoritos);
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesFavoritos);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.isFavorito()) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
@@ -50,7 +63,15 @@ public class Favoritos extends Fragment {
     public void onResume() {
         super.onResume();
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesFavoritos);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.isFavorito()) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);

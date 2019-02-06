@@ -1,27 +1,19 @@
 package app.john.com.listanime.modelos;
 
-import android.widget.ImageView;
-
-import java.util.ArrayList;
-
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.relation.ToMany;
 
 @Entity
 public class Usuario {
-    //Atributos
+    // Atributos
     @Id
-    public long id;
+    private long id;
     private String nome, email, senha;
-    public ToMany<Anime> animesAssistindo;
-    public ToMany<Anime> animesConcluidos;
-    public ToMany<Anime> animesPretendoAssistir;
-    public ToMany<Anime> animesDescartados;
-    public ToMany<Anime> animesFavoritos;
+    private ToMany<Anime> animes;
     private boolean logado;
 
-    //Construtores
+    // Construtores
     public Usuario() {
 
     }
@@ -33,15 +25,22 @@ public class Usuario {
         this.logado = false;
     }
 
-    //Métodos de negócio
-
-    //Métodos Get/Set
-    public void setLogado(boolean logado) {
-        this.logado = logado;
+    // Métodos
+    public void adicionarAnime(Anime anime) {
+        animes.add(anime);
     }
 
-    public boolean getLogado() {
-        return this.logado;
+    public void removerAnime(Anime anime) {
+        animes.remove(anime);
+    }
+
+    // Métodos Get/Set
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -66,5 +65,17 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+
+    public boolean getLogado() {
+        return this.logado;
+    }
+
+    public ToMany<Anime> getAnimes() {
+        return animes;
     }
 }

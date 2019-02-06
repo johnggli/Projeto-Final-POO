@@ -32,10 +32,11 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             descricao;
     private TextView episodiosAssistidos;
     private String status;
+    private boolean favorito;
     private int nota, quantidadeDeEpisodiosAssistidos;
     private Spinner spinnerStatus;
     private RatingBar ratingBar;
-    private Button btnCancelarOuExcluir;
+    private Button setFavorito, btnExcluir;
     private Controle controle;
 
     @Override
@@ -62,7 +63,6 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-        btnCancelarOuExcluir = findViewById(R.id.btnCancelarOuExcluir);
         tituloDoAnime = findViewById(R.id.txtTitulo);
         nomeDoEstudio = findViewById(R.id.txtEstudio);
         anoDeExibicao = findViewById(R.id.txtAno);
@@ -70,6 +70,9 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         nomeDoDiretor = findViewById(R.id.txtDiretor);
         descricao = findViewById(R.id.txtDescricao);
         episodiosAssistidos = findViewById(R.id.txtEpisodiosAssistidos);
+        setFavorito = findViewById(R.id.btnFavorito);
+        btnExcluir = findViewById(R.id.btnExcluir);
+
         quantidadeDeEpisodiosAssistidos = 0;
 
         if (controle.isEdicao()) {
@@ -85,19 +88,36 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
             spinnerStatus.setSelection(controle.getPosicaoStatus());
             quantidadeDeEpisodiosAssistidos = controle.getAnimeSendoEditado().getEpisodiosAssistidos();
+            favorito = controle.getAnimeSendoEditado().isFavorito();
 
-            btnCancelarOuExcluir.setText("EXCLUIR ANIME");
+            setFavorito.setVisibility(View.VISIBLE);
+            btnExcluir.setVisibility(View.VISIBLE);
 
-            btnCancelarOuExcluir.setOnClickListener(new View.OnClickListener() {
+            if (favorito) {
+                setFavorito.setText("REMOVER DOS FAVORITOS");
+            }
+
+            setFavorito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    abrirDialogExcluir();
+                    if (favorito) {
+                        favorito = false;
+                        setFavorito.setText("ADICIONAR AOS FAVORITOS");
+                    }
+                    else {
+                        favorito = true;
+                        setFavorito.setText("REMOVER DOS FAVORITOS");
+                    }
                 }
             });
         }
     }
 
-    public void abrirDialogExcluir() {
+    public void cancelarMudancas(View view) {
+        this.finish();
+    }
+
+    public void abrirDialogExcluir(View view) {
         DialogExcluir dialogExcluir = new DialogExcluir();
         dialogExcluir.show(getSupportFragmentManager(), "dialog excluir");
     }
@@ -114,7 +134,7 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
         if (controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status,
-                diretor, descr, pontuacao)) {
+                diretor, descr, pontuacao, favorito)) {
             mostrarMensagem("Anime adicionado com sucesso!");
             finish();
         }
@@ -135,10 +155,6 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             quantidadeDeEpisodiosAssistidos--;
         }
         episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
-    }
-
-    public void cancelarCadastro(View view) {
-        finish();
     }
 
     @Override

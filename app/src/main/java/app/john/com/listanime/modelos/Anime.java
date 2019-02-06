@@ -10,67 +10,59 @@ import io.objectbox.relation.ToMany;
 
 @Entity
 public class Anime {
-    //Atributos
+    // Atributos
     @Id
-    public long id;
+    private long id;
 
-    private String titulo, descricao, tipo, diretor, estudio;
-    private int anoDeExibicao, pontuacao, episodiosTotais, episodiosAssistidos;
-    public ToMany<Anotacao> anotacoes;
+    private String titulo, estudio, status, diretor, descricao;
+    private int anoDeExibicao, episodiosTotais, episodiosAssistidos, pontuacao;
+    private ToMany<Anotacao> anotacoes;
     private boolean favorito;
 
-    //Construtores
+    // Construtores
     public Anime() {
 
     }
 
-    public Anime(String titulo, String estudio, int ano, int episodiosTotais, int episodiosAssistidos,
-                 String diretor, String descricao, int pontuacao) {
+    public Anime(String titulo, String estudio, String status, String diretor, String descricao,
+                 int ano, int episodiosTotais, int episodiosAssistidos, int pontuacao, boolean favorito) {
         this.titulo = titulo;
         this.estudio = estudio;
-        this.anoDeExibicao = ano;
-        this.episodiosTotais = episodiosTotais;
+        this.status = status;
         this.diretor = diretor;
         this.descricao = descricao;
-        this.pontuacao = pontuacao;
-        this.favorito = false;
+        this.anoDeExibicao = ano;
+        this.episodiosTotais = episodiosTotais;
         this.episodiosAssistidos = episodiosAssistidos;
+        this.pontuacao = pontuacao;
+        this.favorito = favorito;
 
     }
 
-    //Métodos de Negócio
+    // Métodos
+    public void adicionarAnotacao(Anotacao anotacao) {
+        anotacoes.add(anotacao);
+    }
 
-    //Métodos Get/Set
+    public void removerAnotacao(Anotacao anotacao) {
+        anotacoes.remove(anotacao);
+    }
+
+    // Métodos Get/Set
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(String diretor) {
-        this.diretor = diretor;
     }
 
     public String getEstudio() {
@@ -81,28 +73,28 @@ public class Anime {
         this.estudio = estudio;
     }
 
-    public int getPontuacao() {
-        return pontuacao;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public int getEpisodiosTotais() {
-        return episodiosTotais;
+    public String getDiretor() {
+        return diretor;
     }
 
-    public void setEpisodiosTotais(int episodiosTotais) {
-        this.episodiosTotais = episodiosTotais;
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
     }
 
-    public boolean isFavorito() {
-        return favorito;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getAnoDeExibicao() {
@@ -113,11 +105,39 @@ public class Anime {
         this.anoDeExibicao = anoDeExibicao;
     }
 
+    public int getEpisodiosTotais() {
+        return episodiosTotais;
+    }
+
+    public void setEpisodiosTotais(int episodiosTotais) {
+        this.episodiosTotais = episodiosTotais;
+    }
+
     public int getEpisodiosAssistidos() {
         return episodiosAssistidos;
     }
 
     public void setEpisodiosAssistidos(int episodiosAssistidos) {
         this.episodiosAssistidos = episodiosAssistidos;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
+    public ToMany<Anotacao> getAnotacoes() {
+        return anotacoes;
     }
 }

@@ -11,9 +11,11 @@
 
     <LinearLayout
         android:id="@+id/anime_item"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,8 +114,19 @@
                         android:layout_marginLeft="2dp"
                         android:text="0"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/iconeFavoritado"
+                        android:visibility="invisible"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@mipmap/ic_favoritado"
+                        android:layout_marginStart="16dp" />
                 </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
         <ProgressBar

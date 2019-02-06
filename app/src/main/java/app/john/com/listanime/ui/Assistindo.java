@@ -13,15 +13,20 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
+import app.john.com.listanime.modelos.Anime;
 
 public class Assistindo extends Fragment {
 
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
+    private List<Anime> animes;
     public Assistindo() {
 
     }
@@ -33,7 +38,15 @@ public class Assistindo extends Fragment {
 
         rvAnimes = view.findViewById(R.id.rvAssistindo);
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesAssistindo);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.getStatus().equals("Assistindo")) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
@@ -52,7 +65,15 @@ public class Assistindo extends Fragment {
     public void onResume() {
         super.onResume();
 
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), controle.getUsuarioLogado().animesAssistindo);
+        animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.getStatus().equals("Assistindo")) {
+                animes.add(anime);
+            }
+        }
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAnimes.setAdapter(adapter);
