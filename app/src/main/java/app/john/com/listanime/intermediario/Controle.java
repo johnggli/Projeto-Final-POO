@@ -2,9 +2,12 @@ package app.john.com.listanime.intermediario;
 
 import android.widget.ImageView;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import app.john.com.listanime.modelos.Anime;
+import app.john.com.listanime.modelos.Anotacao;
 import app.john.com.listanime.modelos.Top;
 import app.john.com.listanime.modelos.Usuario;
 import app.john.com.listanime.persistencia.App;
@@ -18,13 +21,73 @@ public class Controle {
     private Box<Usuario> usuarioBox = boxStore.boxFor(Usuario.class);
     private Box<Anime> animeBox = boxStore.boxFor(Anime.class);
     private Box<Top> topBox = boxStore.boxFor(Top.class);
+    private Box<Anotacao> anotacaoBox = boxStore.boxFor(Anotacao.class);
     private String erro;
     private static long idUsuarioLogado;
     private static long idDoAnimeSendoEditado;
     private static long idDoTopSendoEditado;
+    private static long idDaAnotacaoAtual;
     private static boolean isEdicao;
 
     public Controle() {
+    }
+
+    public Anotacao getAnotacaoAtual() {
+        return anotacaoBox.get(idDaAnotacaoAtual);
+    }
+
+    public void setIdDaAnotacaoAtual(long idDaAnotacaoAtual) {
+        Controle.idDaAnotacaoAtual = idDaAnotacaoAtual;
+    }
+
+    public boolean adicionarAnotacao(String texto) {
+        if (texto.length() == 0) {
+            erro = "Ooops! Digite uma anotação.";
+            return false;
+        }
+
+        Anotacao anotacao;
+
+        Anime anime = getAnimeSendoEditado();
+
+        Usuario usuario = getUsuarioLogado();
+
+        Calendar calendar = Calendar.getInstance();
+        String dataAtual = DateFormat.getDateInstance().format(calendar.getTime());
+
+        if (isEdicao()) {
+            anotacao = getAnotacaoAtual();
+
+            anotacao.setAnotacao(texto);
+            anotacao.setDataDaAnotacao(dataAtual);
+
+            anotacaoBox.put(anotacao);
+
+        }
+        else {
+            anotacao = new Anotacao(texto, dataAtual);
+        }
+
+        anime.adicionarAnotacao(anotacao);
+        animeBox.put(anime);
+        usuario.adicionarAnime(anime);
+        usuarioBox.put(usuario);
+
+        return true;
+    }
+
+    public void removerAnotacao() {
+        Anotacao anotacao = getAnotacaoAtual();
+        Anime anime = getAnimeSendoEditado();
+        Usuario usuario = getUsuarioLogado();
+
+        anotacaoBox.remove(anotacao);
+
+        anime.removerAnotacao(anotacao);
+        animeBox.put(anime);
+
+        usuario.adicionarAnime(anime);
+        usuarioBox.put(usuario);
     }
 
     public void adicionarAnimeAoTop(Anime anime) {

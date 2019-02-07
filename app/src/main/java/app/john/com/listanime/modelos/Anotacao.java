@@ -9,9 +9,15 @@ public class Anotacao {
     @Id
     private long id;
     private String anotacao;
+    private String dataDaAnotacao;
 
     public Anotacao() {
 
+    }
+
+    public Anotacao(String texto, String data) {
+        anotacao = texto;
+        dataDaAnotacao = data;
     }
 
     public long getId() {
@@ -28,5 +34,13 @@ public class Anotacao {
 
     public void setAnotacao(String anotacao) {
         this.anotacao = anotacao;
+    }
+
+    public String getDataDaAnotacao() {
+        return dataDaAnotacao;
+    }
+
+    public void setDataDaAnotacao(String dataDaAnotacao) {
+        this.dataDaAnotacao = dataDaAnotacao;
     }
 }

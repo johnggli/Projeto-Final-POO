@@ -52,8 +52,11 @@
         <activity
             android:name=".ui.TelaTop"
             android:label="Adicionar Top" />
-        <activity android:name=".ui.EscolherItem"
-            android:label="Selecionar Anime"></activity>
+        <activity
+            android:name=".ui.EscolherItem"
+            android:label="Selecionar Anime" />
+        <activity android:name=".ui.Anotacoes" />
+        <activity android:name=".ui.EscreverAnotacao"></activity>
     </application>
 
 </manifest>

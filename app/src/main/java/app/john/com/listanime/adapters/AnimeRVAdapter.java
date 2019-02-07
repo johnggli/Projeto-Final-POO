@@ -21,6 +21,7 @@ import java.util.List;
 import app.john.com.listanime.R;
 import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
+import app.john.com.listanime.ui.Anotacoes;
 import app.john.com.listanime.ui.CadastrarAnime;
 import app.john.com.listanime.ui.EscolherItem;
 import app.john.com.listanime.ui.Login;
@@ -90,6 +91,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
                 TextView dialogNomeAnime = myDialog.findViewById(R.id.dialogNomeAnime);
                 TextView dialogEstudio = myDialog.findViewById(R.id.dialogEstudio);
                 TextView dialogBotaoEditar = myDialog.findViewById(R.id.dialogBotaoEditar);
+                TextView dialogBotaoAnotacoes = myDialog.findViewById(R.id.dialogBotaoAnotacoes);
 
                 dialogNomeAnime.setText(animes.get(vHolder.getAdapterPosition()).getTitulo());
                 dialogEstudio.setText(animes.get(vHolder.getAdapterPosition()).getEstudio());
@@ -100,6 +102,13 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
                     @Override
                     public void onClick(View v) {
                         editarAnime();
+                    }
+                });
+
+                dialogBotaoAnotacoes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        adicionarAnotacao();
                     }
                 });
 
@@ -143,6 +152,11 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         myDialog.dismiss();
         controle.setIsEdicao(true);
         context.startActivity(new Intent(context, CadastrarAnime.class));
+    }
+
+    public void adicionarAnotacao() {
+        myDialog.dismiss();
+        context.startActivity(new Intent(context, Anotacoes.class));
     }
 
     public void mostrarMensagem(String mensagem) {
