@@ -39,7 +39,8 @@
             android:name=".ui.CadastrarAnime"
             android:label="Adicionar Anime"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.MeusNumeros" />
+        <activity android:name=".ui.MeusNumeros"
+            android:label="Meus Números"/>
         <activity
             android:name=".ui.MeusTops"
             android:label="Meus Top&apos;s" />
@@ -55,8 +56,10 @@
         <activity
             android:name=".ui.EscolherItem"
             android:label="Selecionar Anime" />
-        <activity android:name=".ui.Anotacoes" />
-        <activity android:name=".ui.EscreverAnotacao"></activity>
+        <activity android:name=".ui.Anotacoes"
+            android:label="Anotações"/>
+        <activity android:name=".ui.EscreverAnotacao"
+            android:label="Nova Anotação"></activity>
     </application>
 
 </manifest>
