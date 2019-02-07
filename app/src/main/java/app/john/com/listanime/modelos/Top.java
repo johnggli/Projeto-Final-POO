@@ -53,4 +53,8 @@ public class Top {
     public ToMany<Anime> getAnimesDoTop() {
         return animesDoTop;
     }
+
+    public void setAnimesDoTop(ToMany<Anime> animesDoTop) {
+        this.animesDoTop = animesDoTop;
+    }
 }

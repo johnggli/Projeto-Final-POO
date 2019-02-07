@@ -2,6 +2,8 @@ package app.john.com.listanime.intermediario;
 
 import android.widget.ImageView;
 
+import java.util.List;
+
 import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.modelos.Top;
 import app.john.com.listanime.modelos.Usuario;
@@ -23,6 +25,28 @@ public class Controle {
     private static boolean isEdicao;
 
     public Controle() {
+    }
+
+    public void adicionarAnimeAoTop(Anime anime) {
+        Top top = topBox.get(idDoTopSendoEditado);
+
+        top.adicionarAnimeAoTop(anime);
+        topBox.put(top);
+
+        Usuario usuario = usuarioBox.get(idUsuarioLogado);
+
+        usuario.adicionarTop(top);
+        usuarioBox.put(usuario);
+    }
+
+    public void excluirTop() {
+        Top top = getTopSendoEditado();
+        Usuario usuario = getUsuarioLogado();
+
+        topBox.remove(top);
+
+        usuario.removerTop(top);
+        usuarioBox.put(usuario);
     }
 
     public void setIdDoTopSendoEditado(Top top) {

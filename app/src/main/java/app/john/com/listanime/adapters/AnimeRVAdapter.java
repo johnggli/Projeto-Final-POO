@@ -22,6 +22,7 @@ import app.john.com.listanime.R;
 import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.ui.CadastrarAnime;
+import app.john.com.listanime.ui.EscolherItem;
 import app.john.com.listanime.ui.Login;
 import app.john.com.listanime.ui.Main;
 import io.objectbox.relation.ToMany;

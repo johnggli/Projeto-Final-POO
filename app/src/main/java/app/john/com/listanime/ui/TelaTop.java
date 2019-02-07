@@ -1,18 +1,31 @@
 package app.john.com.listanime.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.john.com.listanime.R;
+import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
+import app.john.com.listanime.modelos.Anime;
+import io.objectbox.relation.ToMany;
 
 public class TelaTop extends AppCompatActivity {
 
     private EditText tituloDoTop;
     private Controle controle;
+    private RecyclerView rvAnimesDoTop;
+    private Button btnAdicionar, btnExcluirTop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +34,35 @@ public class TelaTop extends AppCompatActivity {
 
         controle = new Controle();
 
+        CardView cardViewRVAnimesDoTop = findViewById(R.id.cardViewRVAnimesDoTop);
+        rvAnimesDoTop = findViewById(R.id.rvAnimesDoTop);
+
         tituloDoTop = findViewById(R.id.TituloDoTop);
+        btnAdicionar = findViewById(R.id.btnAdicionar);
+        btnExcluirTop = findViewById(R.id.btnExcluirTop);
 
         if (controle.isEdicao()) {
             getSupportActionBar().setTitle("Editar Top");
 
+            carregarDados();
             tituloDoTop.setText(controle.getTopSendoEditado().getTituloDoTop());
+            cardViewRVAnimesDoTop.setVisibility(View.VISIBLE);
+            btnAdicionar.setVisibility(View.VISIBLE);
+            btnExcluirTop.setVisibility(View.VISIBLE);
         }
     }
 
-    public void adicionarTop(View view) {
+    private void carregarDados() {
+
+        List<Anime> animes = new ArrayList<>(controle.getTopSendoEditado().getAnimesDoTop());
+
+        AnimeRVAdapter adapter = new AnimeRVAdapter(this, animes);
+
+        rvAnimesDoTop.setLayoutManager(new LinearLayoutManager(this));
+        rvAnimesDoTop.setAdapter(adapter);
+    }
+
+    public void cadastrarTop(View view) {
         String titulo = tituloDoTop.getText().toString();
 
         if (controle.cadastrarTop(titulo)) {
@@ -48,5 +80,16 @@ public class TelaTop extends AppCompatActivity {
 
     public void mostrarMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    public void abrirTelaEscolherAnime(View view) {
+        finish();
+        startActivity(new Intent(this, EscolherItem.class));
+    }
+
+    public void excluirTop(View view) {
+        controle.excluirTop();
+        mostrarMensagem("Top Excluído com sucesso!");
+        finish();
     }
 }

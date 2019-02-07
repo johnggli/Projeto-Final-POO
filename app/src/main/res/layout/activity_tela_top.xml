@@ -44,6 +44,26 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardViewRVAnimesDoTop"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                card_view:cardCornerRadius="5dp"
+                android:visibility="gone">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvAnimesDoTop"
+                    android:paddingTop="8dp"
+                    android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"/>
+            </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/cardViewConcluirTop"
@@ -61,6 +81,20 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/btnAdicionar"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/brancoApp"
+                        android:background="@drawable/rounded_button"
+                        android:onClick="abrirTelaEscolherAnime"
+                        android:text="Adicionar" />
+
+                    <Button
                         android:id="@+id/btnSalvarTop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -70,7 +104,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button"
-                        android:onClick="adicionarTop"
+                        android:onClick="cadastrarTop"
                         android:text="Salvar" />
 
                     <Button
@@ -86,6 +120,20 @@
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button2"
                         android:text="Cancelar" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:onClick="excluirTop"
+                        android:id="@+id/btnExcluirTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/brancoApp"
+                        android:background="@drawable/rounded_button3"
+                        android:text="Excluir Top" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
