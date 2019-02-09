@@ -40,7 +40,7 @@ public class Entrar extends AppCompatActivity {
             finish();
         }
         else {
-            mensagem("Erro!");
+            mensagem("Ooops! E-mail ou senha inválidos.");
         }
     }
 
