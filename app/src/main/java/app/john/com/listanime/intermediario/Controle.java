@@ -32,6 +32,25 @@ public class Controle {
     public Controle() {
     }
 
+    public boolean alterarDadosDoUsuario(String novoNome, String novaSenha, String senhaAtual) {
+        Usuario usuarioLogado = getUsuarioLogado();
+
+        if (novoNome.length() == 0 || novaSenha.length() == 0 || senhaAtual.length() == 0) {
+            erro = "Ooops! Existem campos vazios.";
+            return false;
+        }
+
+        if (!senhaAtual.equals(usuarioLogado.getSenha())) {
+            erro = "Ooops! Senha atual incorreta!";
+            return false;
+        }
+        usuarioLogado.setNome(novoNome);
+        usuarioLogado.setSenha(novaSenha);
+
+        usuarioBox.put(usuarioLogado);
+        return true;
+    }
+
     public Anotacao getAnotacaoAtual() {
         return anotacaoBox.get(idDaAnotacaoAtual);
     }
@@ -213,7 +232,12 @@ public class Controle {
             return false;
         }
 
-        if (Integer.parseInt(episodiosTotais) == 0) {
+        if (ano.length() > 4) {
+            erro = "Ooops! O ano deve ter no máximo 4 dígitos!";
+            return false;
+        }
+
+        if (Integer.parseInt(episodiosTotais) <= 0) {
             erro = "Ooops! O anime deve ter pelo menos um episódio.";
             return false;
         }

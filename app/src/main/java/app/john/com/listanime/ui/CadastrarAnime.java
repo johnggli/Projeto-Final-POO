@@ -134,22 +134,29 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         int pontuacao = nota;
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
-        if ((quantidadeAssistidos > 0) && (quantidadeAssistidos < Integer.parseInt(episodiosTotais))
-                && !status.equals("Descartado")) {
-            status = "Assistindo";
-        }
+        if (episodiosTotais.length() > 0) {
+            if ((quantidadeAssistidos > 0) && (quantidadeAssistidos < Integer.parseInt(episodiosTotais))
+                    && !status.equals("Descartado")) {
+                status = "Assistindo";
+            }
 
-        if (status.equals("Concluído")) {
-            quantidadeAssistidos = Integer.parseInt(episodiosTotais);
-        }
+            if (status.equals("Concluído")) {
+                quantidadeAssistidos = Integer.parseInt(episodiosTotais);
+            }
 
-        if (quantidadeAssistidos == Integer.parseInt(episodiosTotais)) {
-            status = "Concluído";
+            if (quantidadeAssistidos == Integer.parseInt(episodiosTotais)) {
+                status = "Concluído";
+            }
         }
 
         if (controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status,
                 diretor, descr, pontuacao, favorito)) {
-            mostrarMensagem("Anime adicionado com sucesso!");
+            if (controle.isEdicao()) {
+                mostrarMensagem("Anime editado com sucesso!");
+            }
+            else {
+                mostrarMensagem("Anime adicionado com sucesso!");
+            }
             finish();
         }
         else {
@@ -158,17 +165,27 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void incrementar(View view) {
-        if (quantidadeDeEpisodiosAssistidos < Integer.parseInt(totalDeEpisodios.getText().toString())) {
-            quantidadeDeEpisodiosAssistidos++;
+        if (totalDeEpisodios.length() <= 0) {
+            mostrarMensagem("Informe o total de episódios.");
         }
-        episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+        else {
+            if (quantidadeDeEpisodiosAssistidos < Integer.parseInt(totalDeEpisodios.getText().toString())) {
+                quantidadeDeEpisodiosAssistidos++;
+            }
+            episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+        }
     }
 
     public void decrementar(View view) {
-        if (quantidadeDeEpisodiosAssistidos > 0) {
-            quantidadeDeEpisodiosAssistidos--;
+        if (totalDeEpisodios.length() <= 0) {
+            mostrarMensagem("Informe o total de episódios.");
         }
-        episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+        else {
+            if (quantidadeDeEpisodiosAssistidos > 0) {
+                quantidadeDeEpisodiosAssistidos--;
+            }
+            episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+        }
     }
 
     @Override

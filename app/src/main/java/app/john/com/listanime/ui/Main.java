@@ -25,11 +25,14 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
     private Controle controle;
     private DrawerLayout drawer;
+    private static Main main;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        main = this;
 
         // iniciando controle
         controle = new Controle();
@@ -91,9 +94,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.animesDescartados:
                 startActivity(new Intent(this, AnimesDescartados.class));
                 break;
-            case R.id.notificacoes:
-                startActivity(new Intent(this, Notificacoes.class));
-                break;
             case R.id.config:
                 startActivity(new Intent(this, Configuracoes.class));
                 break;
@@ -127,5 +127,9 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
     public void mostrarMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    public static Main getMain() {
+        return main;
     }
 }

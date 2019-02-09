@@ -129,8 +129,16 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         myViewHolder.episodiosTotais.setText("" + animes.get(i).getEpisodiosTotais());
         myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
 
-        if (animes.get(i).getStatus().equals("Concluído")) {
-            myViewHolder.img_status.setImageResource(R.mipmap.icone_concluido);
+        switch (animes.get(i).getStatus()) {
+            case "Concluído":
+                myViewHolder.img_status.setImageResource(R.mipmap.icone_concluido);
+                break;
+            case "Pretendo assistir":
+                myViewHolder.img_status.setImageResource(R.mipmap.icone_pretendo_assistir);
+                break;
+            case "Descartado":
+                myViewHolder.img_status.setImageResource(R.mipmap.icone_descartado);
+                break;
         }
 
         if (animes.get(i).isFavorito()) {

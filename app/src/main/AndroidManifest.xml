@@ -26,10 +26,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.Entrar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="Entrar"/>
         <activity
             android:name=".ui.Cadastrar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="Cadastrar"/>
         <activity
             android:name=".ui.Main"
             android:label="@string/title_activity_main"
@@ -37,28 +39,43 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.CadastrarAnime"
-            android:label="Adicionar Anime"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.MeusNumeros"
+            android:screenOrientation="portrait"
+            android:label="Adicionar Anime" />
+        <activity
+            android:name=".ui.MeusNumeros"
+            android:screenOrientation="portrait"
             android:label="Meus Números"/>
         <activity
             android:name=".ui.MeusTops"
+            android:screenOrientation="portrait"
             android:label="Meus Top&apos;s" />
         <activity
             android:name=".ui.PretendoAssistir"
+            android:screenOrientation="portrait"
             android:label="Pretendo Assistir" />
-        <activity android:name=".ui.AnimesDescartados" />
-        <activity android:name=".ui.Notificacoes" />
-        <activity android:name=".ui.Configuracoes" />
+        <activity
+            android:name=".ui.AnimesDescartados"
+            android:screenOrientation="portrait"
+            android:label="Animes Descartados"/>
+        <activity
+            android:name=".ui.Configuracoes"
+            android:screenOrientation="portrait"
+            android:label="Configurações de Usuário"/>
         <activity
             android:name=".ui.TelaTop"
+            android:screenOrientation="portrait"
             android:label="Adicionar Top" />
         <activity
             android:name=".ui.EscolherItem"
+            android:screenOrientation="portrait"
             android:label="Selecionar Anime" />
-        <activity android:name=".ui.Anotacoes"
+        <activity
+            android:name=".ui.Anotacoes"
+            android:screenOrientation="portrait"
             android:label="Anotações"/>
-        <activity android:name=".ui.EscreverAnotacao"
+        <activity
+            android:name=".ui.EscreverAnotacao"
+            android:screenOrientation="portrait"
             android:label="Nova Anotação"></activity>
     </application>
 
