@@ -5,12 +5,12 @@ import io.objectbox.annotation.Id;
 
 @Entity
 public class Anotacao {
-
+    /* Atributos */
     @Id
     private long id;
-    private String anotacao;
-    private String dataDaAnotacao;
+    private String anotacao, dataDaAnotacao;
 
+    /* Construtores */
     public Anotacao() {
 
     }
@@ -20,6 +20,7 @@ public class Anotacao {
         dataDaAnotacao = data;
     }
 
+    /* Getters e Setters */
     public long getId() {
         return id;
     }

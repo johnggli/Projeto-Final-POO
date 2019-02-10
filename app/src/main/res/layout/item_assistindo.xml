@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Nome do Anime"
+                    android:text="@string/nome_do_anime2"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
                     android:id="@+id/txtNomeEstudio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estúdio"
+                    android:text="@string/est_dio2"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
-                        android:text="Ano"
+                        android:text="@string/ano"
                         android:textSize="14sp" />
 
                     <ImageView

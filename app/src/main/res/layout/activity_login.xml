@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="LISTANIME"
+        android:text="@string/listanime"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,11 +36,12 @@
         android:background="@drawable/border_button"
         android:clickable="true"
         android:onClick="abrirTelaEntrar"
-        android:text="Entrar"
+        android:text="@string/entrar"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_cadastrar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true" />
 
     <Button
         android:id="@+id/btn_cadastrar"
@@ -54,9 +55,10 @@
         android:background="@drawable/rounded_button"
         android:clickable="true"
         android:onClick="abrirTelaCadastrar"
-        android:text="cadastrar"
+        android:text="@string/cadastrar"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_entrar" />
+        app:layout_constraintStart_toEndOf="@+id/btn_entrar"
+        android:focusable="true" />
 </android.support.constraint.ConstraintLayout>

@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialogFragment;
 
 public class DialogExcluir extends AppCompatDialogFragment {
 
     private DialogExcluirAnimeListener listener;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 

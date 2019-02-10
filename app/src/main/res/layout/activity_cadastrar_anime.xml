@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,7 @@
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:text="Dados da Obra"
+                android:text="@string/dados_da_obra"
                 android:textAllCaps="true"
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />
@@ -34,7 +33,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="left"
-                android:text="Campos obrigatórios:"
+                android:text="@string/campos_obrigat_rios"
                 android:textSize="12sp"
                 android:layout_marginStart="16dp" />
 
@@ -60,7 +59,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="8dp"
-                        android:hint="Título do anime"
+                        android:hint="@string/t_tulo_do_anime2"
                         android:inputType="textPersonName"
                         android:textSize="16sp" />
 
@@ -70,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:hint="Nome do estúdio"
+                        android:hint="@string/nome_do_est_dio"
                         android:inputType="textPersonName"
                         android:textSize="16sp" />
 
@@ -80,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:hint="Ano de exibição"
+                        android:hint="@string/ano_de_exibi_o"
                         android:inputType="date"
                         android:textSize="16sp" />
 
@@ -91,7 +90,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
-                        android:hint="Total de episódios"
+                        android:hint="@string/total_de_epis_dios"
                         android:inputType="number"
                         android:textSize="16sp" />
 
@@ -106,7 +105,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="left"
-                android:text="Campos opcionais:"
+                android:text="@string/campos_opcionais"
                 android:textSize="12sp" />
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -133,7 +132,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Status:"
+                            android:text="@string/status"
                             android:textSize="16sp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginStart="10dp" />
@@ -142,7 +141,8 @@
                             android:id="@+id/spinnerStatus"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp">
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp">
 
                         </Spinner>
                     </LinearLayout>
@@ -154,7 +154,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="8dp"
-                        android:hint="Nome do diretor"
+                        android:hint="@string/nome_do_diretor"
                         android:inputType="textPersonName"
                         android:textSize="16sp" />
 
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:hint="Descrição do anime"
+                        android:hint="@string/descri_o_do_anime"
                         android:inputType="text"
                         android:textSize="16sp" />
 
@@ -180,7 +180,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:text="Episódios Assistidos:" />
+                            android:text="@string/epis_dios_assistidos" />
 
                         <Button
                             android:id="@+id/btn_menos"
@@ -189,9 +189,10 @@
                             android:layout_marginLeft="8dp"
                             android:background="@drawable/rounded_button"
                             android:onClick="decrementar"
-                            android:text="-"
-                            android:textSize="20dp"
-                            android:textColor="@color/brancoApp"/>
+                            android:text="@string/line"
+                            android:textSize="20sp"
+                            android:textColor="@color/brancoApp"
+                            android:layout_marginStart="8dp" />
 
                         <TextView
                             android:id="@+id/txtEpisodiosAssistidos"
@@ -201,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:text="0"/>
+                            android:text="@string/_0"/>
 
                         <Button
                             android:id="@+id/btn_mais"
@@ -209,8 +210,8 @@
                             android:layout_height="30dp"
                             android:background="@drawable/rounded_button"
                             android:onClick="incrementar"
-                            android:text="+"
-                            android:textSize="20dp"
+                            android:text="@string/plus"
+                            android:textSize="20sp"
                             android:textColor="@color/brancoApp"/>
                     </LinearLayout>
 
@@ -228,7 +229,7 @@
                             android:layout_marginStart="12dp"
                             android:layout_marginLeft="12dp"
                             android:layout_marginTop="12dp"
-                            android:text="Nota:"
+                            android:text="@string/nota"
                             android:textSize="16sp" />
 
                         <RatingBar
@@ -249,7 +250,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/colorAccent"
                         android:background="@drawable/border_button2"
-                        android:text="Adicionar aos favoritos" />
+                        android:text="@string/adicionar_aos_favoritos" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -281,7 +282,7 @@
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button"
                         android:onClick="adiconarAnime"
-                        android:text="Salvar" />
+                        android:text="@string/salvar2" />
 
                     <Button
                         android:onClick="cancelarMudancas"
@@ -295,7 +296,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button2"
-                        android:text="Cancelar" />
+                        android:text="@string/cancelar2" />
 
                     <Button
                         android:visibility="gone"
@@ -309,7 +310,7 @@
                         android:textSize="16sp"
                         android:textColor="@color/brancoApp"
                         android:background="@drawable/rounded_button3"
-                        android:text="Excluir Anime" />
+                        android:text="@string/excluir_anime" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

@@ -21,19 +21,15 @@ public class Entrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar);
 
-        // inicia controle
         controle = new Controle();
 
-        // binding
         txtEmail = findViewById(R.id.txtEmail);
         txtSenha = findViewById(R.id.txtSenha);
     }
 
     public void continuar(View view) {
-        // obtém os valores digitados
         String email = txtEmail.getText().toString();
         String senha = txtSenha.getText().toString();
-
 
         if (controle.logar(email, senha)) {
             startActivity(new Intent(this, Main.class));

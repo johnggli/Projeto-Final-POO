@@ -4,13 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.john.com.listanime.R;
-import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.adapters.EscolherRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;

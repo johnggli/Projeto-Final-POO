@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import app.john.com.listanime.R;
@@ -22,22 +21,21 @@ public class Cadastrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        // inicia controle
+        /* Inicia controle */
         controle = new Controle();
 
-        // binding
         txtNome = findViewById(R.id.txtNome);
         txtEmail = findViewById(R.id.txtEmail);
         txtSenha = findViewById(R.id.txtSenha);
     }
 
     public void concluirCadastro(View view) {
-        // obtém os valores digitados
+        /* Obtém os valores digitados */
         String nome = txtNome.getText().toString();
         String email = txtEmail.getText().toString();
         String senha = txtSenha.getText().toString();
 
-        // cadastra o usuário
+        /* Cadastra o usuário */
         if (controle.cadastrarUsuario(nome, email, senha)) {
             mostrarMensagem("Usuário cadastrado com sucesso!");
             controle.logar(email, senha);

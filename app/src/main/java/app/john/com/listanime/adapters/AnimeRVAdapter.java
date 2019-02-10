@@ -1,5 +1,6 @@
 package app.john.com.listanime.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,53 +23,57 @@ import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.ui.Anotacoes;
 import app.john.com.listanime.ui.CadastrarAnime;
-import app.john.com.listanime.ui.EscolherItem;
-import app.john.com.listanime.ui.Login;
-import app.john.com.listanime.ui.Main;
-import io.objectbox.relation.ToMany;
 
 public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHolder> {
 
+    /* Atributos */
     private Context context;
-    private List<Anime> animes;
-    private Dialog myDialog;
     private Controle controle;
+    private Dialog myDialog;
+    private List<Anime> animes;
 
+    /* Construtor */
     public AnimeRVAdapter(Context context, List<Anime> animes) {
         this.context = context;
         this.animes = animes;
     }
 
+    /* Classe ViewHolver */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView nomeDoAnime;
-        private TextView nomeDoEstudio;
-        private TextView anoDeExibicao;
-        private TextView episodiosAssistidos;
-        private TextView episodiosTotais;
-        private TextView nota;
+        /* Atributos */
         private ImageView img_status, iconeFavoritado;
-        private ProgressBar progressBar;
         private LinearLayout itemAnime;
+        private ProgressBar progressBar;
+        private TextView nomeDoAnime, nomeDoEstudio, anoDeExibicao, episodiosAssistidos,
+                episodiosTotais, nota;
 
+        /* Construtor */
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            /* Binding */
+            setupViews();
+        }
+
+        private void setupViews() {
             img_status = itemView.findViewById(R.id.img_status);
+            iconeFavoritado = itemView.findViewById(R.id.iconeFavoritado);
+
+            itemAnime = itemView.findViewById(R.id.anime_item);
+
+            progressBar = itemView.findViewById(R.id.barraDeProgresso);
+
             nomeDoAnime = itemView.findViewById(R.id.txtNomeAnime);
             nomeDoEstudio = itemView.findViewById(R.id.txtNomeEstudio);
             anoDeExibicao = itemView.findViewById(R.id.txtAno);
             episodiosAssistidos = itemView.findViewById(R.id.episodiosAssistidos);
             episodiosTotais = itemView.findViewById(R.id.episodiosTotais);
             nota = itemView.findViewById(R.id.txtNota);
-            iconeFavoritado = itemView.findViewById(R.id.iconeFavoritado);
-
-            progressBar = itemView.findViewById(R.id.barraDeProgresso);
-
-            itemAnime = itemView.findViewById(R.id.anime_item);
         }
     }
 
+    /* Métodos */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -78,26 +82,32 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
 
         final MyViewHolder vHolder = new MyViewHolder(view);
 
+        /* inicia controle */
         controle = new Controle();
 
-        // Iniciando Dialog.
+        /* iniciando dialog */
         myDialog = new Dialog(context);
         myDialog.setContentView(R.layout.dialog_anime);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        /* onClick */
         vHolder.itemAnime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /* variáveis */
                 TextView dialogNomeAnime = myDialog.findViewById(R.id.dialogNomeAnime);
                 TextView dialogEstudio = myDialog.findViewById(R.id.dialogEstudio);
                 TextView dialogBotaoEditar = myDialog.findViewById(R.id.dialogBotaoEditar);
                 TextView dialogBotaoAnotacoes = myDialog.findViewById(R.id.dialogBotaoAnotacoes);
 
+                /* setting dialog */
                 dialogNomeAnime.setText(animes.get(vHolder.getAdapterPosition()).getTitulo());
                 dialogEstudio.setText(animes.get(vHolder.getAdapterPosition()).getEstudio());
 
+                /* setting id do usuário logado em controle */
                 controle.setIdDoAnimeSendoEditado(animes.get(vHolder.getAdapterPosition()));
 
+                /* onClick dos botões da dialog */
                 dialogBotaoEditar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -112,6 +122,7 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
                     }
                 });
 
+                /* abrir dialog */
                 myDialog.show();
             }
         });
@@ -119,15 +130,17 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         return vHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
+        /* setting ViewHolder */
         myViewHolder.nomeDoAnime.setText(animes.get(i).getTitulo());
         myViewHolder.nomeDoEstudio.setText(animes.get(i).getEstudio());
-        myViewHolder.anoDeExibicao.setText("" + animes.get(i).getAnoDeExibicao());
-        myViewHolder.episodiosAssistidos.setText("" + animes.get(i).getEpisodiosAssistidos());
-        myViewHolder.episodiosTotais.setText("" + animes.get(i).getEpisodiosTotais());
-        myViewHolder.nota.setText("" + animes.get(i).getPontuacao());
+        myViewHolder.anoDeExibicao.setText(Integer.toString(animes.get(i).getAnoDeExibicao()));
+        myViewHolder.episodiosAssistidos.setText(Integer.toString(animes.get(i).getEpisodiosAssistidos()));
+        myViewHolder.episodiosTotais.setText(Integer.toString(animes.get(i).getEpisodiosTotais()));
+        myViewHolder.nota.setText(Integer.toString(animes.get(i).getPontuacao()));
 
         switch (animes.get(i).getStatus()) {
             case "Concluído":
@@ -147,7 +160,6 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
 
         int valor = animes.get(i).getEpisodiosAssistidos() * 100 / animes.get(i).getEpisodiosTotais();
         myViewHolder.progressBar.setProgress(valor);
-
     }
 
     @Override
@@ -155,19 +167,14 @@ public class AnimeRVAdapter extends RecyclerView.Adapter<AnimeRVAdapter.MyViewHo
         return animes.size();
     }
 
-    public void editarAnime() {
-        // Toast.makeText(context, "" + controle.getIdDoAnimeSendoEditado(), Toast.LENGTH_SHORT).show();
+    private void editarAnime() {
         myDialog.dismiss();
-        controle.setIsEdicao(true);
+        controle.setIsEdicao(true); // avisa ao controle que se trata de uma edição
         context.startActivity(new Intent(context, CadastrarAnime.class));
     }
 
-    public void adicionarAnotacao() {
+    private void adicionarAnotacao() {
         myDialog.dismiss();
         context.startActivity(new Intent(context, Anotacoes.class));
-    }
-
-    public void mostrarMensagem(String mensagem) {
-        Toast.makeText(context, mensagem, Toast.LENGTH_SHORT).show();
     }
 }

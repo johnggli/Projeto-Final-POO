@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="Data"
+            android:text="@string/data"
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:layout_marginStart="10dp" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Anotacão"
+            android:text="@string/anotac_o"
             android:textSize="18sp" />
     </LinearLayout>
 

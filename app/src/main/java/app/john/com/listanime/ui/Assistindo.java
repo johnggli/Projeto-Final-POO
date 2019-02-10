@@ -1,6 +1,5 @@
 package app.john.com.listanime.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +19,17 @@ import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
 
 public class Assistindo extends Fragment {
-
-    // Atributos
+    /* Atributos */
     View view;
     private RecyclerView rvAnimes;
     private Controle controle;
 
-    // Construtor
+    /* Construtor */
     public Assistindo() {
 
     }
 
-    // Métodos
+    /* Métodos */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,21 +42,6 @@ public class Assistindo extends Fragment {
         return view;
     }
 
-    private void carregarDados() {
-        List<Anime> animes = new ArrayList<>();
-
-        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
-            if (anime.getStatus().equals("Assistindo")) {
-                animes.add(anime);
-            }
-        }
-
-        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
-
-        rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvAnimes.setAdapter(adapter);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +52,20 @@ public class Assistindo extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         carregarDados();
+    }
+
+    private void carregarDados() {
+        List<Anime> animes = new ArrayList<>();
+
+        for (Anime anime: controle.getUsuarioLogado().getAnimes()) {
+            if (anime.getStatus().equals("Assistindo")) {
+                animes.add(anime);
+            }
+        }
+        AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
+
+        rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvAnimes.setAdapter(adapter);
     }
 }

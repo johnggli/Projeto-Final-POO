@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.john.com.listanime.R;
-import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.adapters.TopRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
-import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.modelos.Top;
 
 public class MeusTops extends AppCompatActivity {
@@ -35,7 +33,6 @@ public class MeusTops extends AppCompatActivity {
     }
 
     private void carregarDados() {
-
         List<Top> tops = new ArrayList<>(controle.getUsuarioLogado().getTops());
 
         TopRVAdapter adapter = new TopRVAdapter(this, tops);
@@ -47,7 +44,6 @@ public class MeusTops extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         carregarDados();
     }
 

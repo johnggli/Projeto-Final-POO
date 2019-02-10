@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginRight="8dp"
-                android:hint="Digite sua anotação"
+                android:hint="@string/digite_sua_anota_o"
                 android:inputType="text"
                 android:textSize="16sp" />
 
@@ -38,7 +38,7 @@
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OK"
+                android:text="@string/ok"
                 android:background="@drawable/rounded_button"
                 android:layout_gravity="center"
                 android:textColor="@color/brancoApp"/>
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REMOVER ANOTAÇÃO"
+                android:text="@string/remover_anota_o"
                 android:background="@drawable/rounded_button3"
                 android:layout_gravity="center"
                 android:textColor="@color/brancoApp"/>

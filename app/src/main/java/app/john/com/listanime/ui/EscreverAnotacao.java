@@ -14,7 +14,6 @@ public class EscreverAnotacao extends AppCompatActivity {
 
     private EditText anotacao;
     private Controle controle;
-    private Button btnRemover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +23,7 @@ public class EscreverAnotacao extends AppCompatActivity {
         controle = new Controle();
 
         anotacao = findViewById(R.id.Anotacao);
-
-        btnRemover = findViewById(R.id.btnRemover);
+        Button btnRemover = findViewById(R.id.btnRemover);
 
         if (controle.isEdicao()) {
             getSupportActionBar().setTitle("Editar Anotação");

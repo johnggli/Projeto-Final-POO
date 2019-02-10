@@ -36,6 +36,8 @@ public class MeusNumeros extends AppCompatActivity {
 
         carregarDados();
 
+        int colorPrimaryDark = Color.parseColor("#2f2f2f");
+
         Description descricao = new Description();
         descricao.setText("");
 
@@ -50,9 +52,6 @@ public class MeusNumeros extends AppCompatActivity {
         pieChart.setEntryLabelTextSize(16);
         pieChart.setDescription(descricao);
         pieChart.setHoleRadius(50f);
-
-        int colorPrimaryDark = Color.parseColor("#2f2f2f");
-
         pieChart.setHoleColor(colorPrimaryDark);
 
         adicionarDados();
@@ -85,17 +84,14 @@ public class MeusNumeros extends AppCompatActivity {
             entries.add(new PieEntry(assistindo, "Assistindo"));
             cores.add(Color.GREEN);
         }
-
         if (concluidos > 0) {
             entries.add(new PieEntry(concluidos, "Concluídos"));
             cores.add(Color.BLUE);
         }
-
         if (pretendoAssistir > 0) {
             entries.add(new PieEntry(pretendoAssistir, "Pretendo Assistir"));
             cores.add(Color.GRAY);
         }
-
         if (descartados > 0) {
             entries.add(new PieEntry(descartados, "Descartados"));
             cores.add(Color.RED);
@@ -111,6 +107,5 @@ public class MeusNumeros extends AppCompatActivity {
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
-
     }
 }

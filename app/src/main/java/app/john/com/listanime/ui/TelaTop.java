@@ -18,14 +18,12 @@ import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
-import io.objectbox.relation.ToMany;
 
 public class TelaTop extends AppCompatActivity {
 
     private EditText tituloDoTop;
     private Controle controle;
     private RecyclerView rvAnimesDoTop;
-    private Button btnAdicionar, btnExcluirTop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,8 @@ public class TelaTop extends AppCompatActivity {
         rvAnimesDoTop = findViewById(R.id.rvAnimesDoTop);
 
         tituloDoTop = findViewById(R.id.TituloDoTop);
-        btnAdicionar = findViewById(R.id.btnAdicionar);
-        btnExcluirTop = findViewById(R.id.btnExcluirTop);
+        Button btnAdicionar = findViewById(R.id.btnAdicionar);
+        Button btnExcluirTop = findViewById(R.id.btnExcluirTop);
 
         if (controle.isEdicao()) {
             getSupportActionBar().setTitle("Editar Top");
@@ -53,7 +51,6 @@ public class TelaTop extends AppCompatActivity {
     }
 
     private void carregarDados() {
-
         List<Anime> animes = new ArrayList<>(controle.getTopSendoEditado().getAnimesDoTop());
 
         AnimeRVAdapter adapter = new AnimeRVAdapter(this, animes);

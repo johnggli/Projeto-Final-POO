@@ -1,5 +1,6 @@
 package app.john.com.listanime.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,9 +24,10 @@ import app.john.com.listanime.intermediario.Controle;
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    @SuppressLint("StaticFieldLeak")
+    private static Main main;
     private Controle controle;
     private DrawerLayout drawer;
-    private static Main main;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,31 +36,31 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         main = this;
 
-        // iniciando controle
+        /* iniciando controle */
         controle = new Controle();
 
-        // toolbar
+        /* construindo toolbar */
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // construindo drawer
+        /* construindo drawer */
         drawer = findViewById(R.id.main_content);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // navigation view
+        /* construingo navigationView */
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // construindo as tabs
+        /* construindo tabs */
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.container);
 
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // adicionando fragments e seus ícones
+        /* adicionando fragments e seus ícones */
         adapter.AddFragment(new Assistindo(), "Assistindo");
         adapter.AddFragment(new Concluido(), "Concluídos");
         adapter.AddFragment(new Favoritos(), "Favoritos");
@@ -70,13 +72,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_check);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_favorite);
 
-        // colocando o nome do usuário logado na navigation header
+        /* Colocando o nome do usuário logado na navigation header */
         View headView = navigationView.getHeaderView(0);
-
         TextView nomeDoUsuario = headView.findViewById(R.id.nomeDoUsuario);
-
         nomeDoUsuario.setText(controle.getUsuarioLogado().getNome());
-
     }
 
     @Override
@@ -105,9 +104,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
         }
 
-        // fecha o drawer
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
     }
 

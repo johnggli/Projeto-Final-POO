@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
-        android:text="Nome do usuário"
+        android:text="@string/nome_do_usu_rio"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

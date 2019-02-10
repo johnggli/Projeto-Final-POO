@@ -2,11 +2,9 @@ package app.john.com.listanime.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import app.john.com.listanime.R;
 import app.john.com.listanime.intermediario.Controle;
@@ -31,7 +29,6 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         if (controle.temUsuarioLogado()) {
             finish();
         }

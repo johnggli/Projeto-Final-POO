@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+    /* Atributos */
     private final List<Fragment> lstFragment = new ArrayList<>();
     private final List<String> lstTitulos = new ArrayList<>();
 
+    /* Construtor */
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    /* Métodos */
     @Override
     public Fragment getItem(int position) {
         return lstFragment.get(position);
@@ -35,47 +37,4 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         lstFragment.add(fragment);
         lstTitulos.add(titulo);
     }
-
-    //    public SectionsPagerAdapter(FragmentManager fm) {
-//        super(fm);
-//    }
-//
-//    @Override
-//    public Fragment getItem(int position) {
-//        // getItem is called to instantiate the fragment for the given page.
-//        // Return a PlaceholderFragment (defined as a static inner class below).
-//        // return PlaceholderFragment.newInstance(position + 1);
-//        Fragment fragment = null;
-//        switch (position) {
-//            case 0:
-//                fragment = new Assistindo();
-//                break;
-//            case 1:
-//                fragment = new Concluido();
-//                break;
-//            case 2:
-//                fragment = new Favoritos();
-//                break;
-//        }
-//        return fragment;
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        // Show 3 total pages.
-//        return 3;
-//    }
-//
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        switch (position) {
-//            case 0:
-//                return "ASSISTINDO";
-//            case 1:
-//                return "CONCLUÍDO";
-//            case 2:
-//                return "FAVORITOS";
-//        }
-//        return null;
-//    }
 }

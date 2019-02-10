@@ -1,31 +1,27 @@
 package app.john.com.listanime.modelos;
 
-import android.widget.ImageView;
-
-import java.util.List;
-
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.relation.ToMany;
 
 @Entity
 public class Anime {
-    // Atributos
+    /* Atributos */
     @Id
     private long id;
-
     private String titulo, estudio, status, diretor, descricao;
     private int anoDeExibicao, episodiosTotais, episodiosAssistidos, pontuacao;
     private ToMany<Anotacao> anotacoes;
     private boolean favorito;
 
-    // Construtores
+    /* Construtores */
     public Anime() {
 
     }
 
     public Anime(String titulo, String estudio, String status, String diretor, String descricao,
-                 int ano, int episodiosTotais, int episodiosAssistidos, int pontuacao, boolean favorito) {
+                 int ano, int episodiosTotais, int episodiosAssistidos, int pontuacao,
+                 boolean favorito) {
         this.titulo = titulo;
         this.estudio = estudio;
         this.status = status;
@@ -36,10 +32,9 @@ public class Anime {
         this.episodiosAssistidos = episodiosAssistidos;
         this.pontuacao = pontuacao;
         this.favorito = favorito;
-
     }
 
-    // Métodos
+    /* Métodos */
     public void adicionarAnotacao(Anotacao anotacao) {
         anotacoes.add(anotacao);
     }
@@ -48,7 +43,7 @@ public class Anime {
         anotacoes.remove(anotacao);
     }
 
-    // Métodos Get/Set
+    /* Métodos Get/Set */
     public long getId() {
         return id;
     }

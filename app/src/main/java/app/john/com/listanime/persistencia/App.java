@@ -6,8 +6,8 @@ import app.john.com.listanime.modelos.MyObjectBox;
 import io.objectbox.BoxStore;
 
 public class App extends Application {
-    public static App sApp;
 
+    public static App sApp;
     private BoxStore boxStore;
 
     @Override

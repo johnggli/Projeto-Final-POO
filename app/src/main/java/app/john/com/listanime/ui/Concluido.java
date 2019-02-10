@@ -17,7 +17,6 @@ import app.john.com.listanime.R;
 import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
 import app.john.com.listanime.modelos.Anime;
-import io.objectbox.relation.ToMany;
 
 public class Concluido extends Fragment {
 

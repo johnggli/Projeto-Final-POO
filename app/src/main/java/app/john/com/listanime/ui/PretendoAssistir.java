@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,6 @@ public class PretendoAssistir extends AppCompatActivity {
                 animes.add(anime);
             }
         }
-
         AnimeRVAdapter adapter = new AnimeRVAdapter(this, animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(this));
@@ -49,7 +47,6 @@ public class PretendoAssistir extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         carregarDados();
     }
 }

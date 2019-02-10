@@ -48,7 +48,6 @@ public class Favoritos extends Fragment {
                 animes.add(anime);
             }
         }
-
         AnimeRVAdapter adapter = new AnimeRVAdapter(getContext(), animes);
 
         rvAnimes.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,14 +57,12 @@ public class Favoritos extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         controle = new Controle();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         carregarDados();
     }
 }

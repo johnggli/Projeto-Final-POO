@@ -6,7 +6,7 @@ import io.objectbox.relation.ToMany;
 
 @Entity
 public class Usuario {
-    // Atributos
+    /* Atributos */
     @Id
     private long id;
     private String nome, email, senha;
@@ -14,7 +14,7 @@ public class Usuario {
     private ToMany<Top> tops;
     private boolean logado;
 
-    // Construtores
+    /* Construtores */
     public Usuario() {
 
     }
@@ -26,7 +26,7 @@ public class Usuario {
         this.logado = false;
     }
 
-    // Métodos
+    /* Métodos */
     public void adicionarAnime(Anime anime) {
         animes.add(anime);
     }
@@ -43,7 +43,7 @@ public class Usuario {
         tops.remove(top);
     }
 
-    // Métodos Get/Set
+    /* Métodos Get/Set */
     public long getId() {
         return id;
     }

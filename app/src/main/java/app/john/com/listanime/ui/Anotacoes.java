@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.john.com.listanime.R;
-import app.john.com.listanime.adapters.AnimeRVAdapter;
 import app.john.com.listanime.adapters.AnotacaoRVAdapter;
 import app.john.com.listanime.intermediario.Controle;
-import app.john.com.listanime.modelos.Anime;
 import app.john.com.listanime.modelos.Anotacao;
 
 public class Anotacoes extends AppCompatActivity {
@@ -35,7 +33,6 @@ public class Anotacoes extends AppCompatActivity {
     }
 
     private void carregarDados() {
-
         List<Anotacao> anotacoes = new ArrayList<>(controle.getAnimeSendoEditado().getAnotacoes());
 
         AnotacaoRVAdapter adapter = new AnotacaoRVAdapter(this, anotacoes);
@@ -47,7 +44,6 @@ public class Anotacoes extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         carregarDados();
     }
 

@@ -8,19 +8,19 @@
         android:checkableBehavior="single">
         <item android:id="@+id/meusNumeros"
             android:icon="@drawable/ic_meus_numeros"
-            android:title="Meus números" />
+            android:title="@string/meus_n_meros" />
 
         <item android:id="@+id/tops"
             android:icon="@drawable/ic_top"
-            android:title="Meus top's" />
+            android:title="@string/meus_top_s" />
 
         <item android:id="@+id/pretendoAssistir"
             android:icon="@drawable/ic_watch_later"
-            android:title="Pretendo assistir" />
+            android:title="@string/pretendo_assistir" />
 
         <item android:id="@+id/animesDescartados"
             android:icon="@drawable/ic_delete"
-            android:title="Animes descartados" />
+            android:title="@string/animes_descartados" />
     </group>
 
     <group
@@ -28,11 +28,11 @@
         android:checkableBehavior="single">
         <item android:id="@+id/config"
             android:icon="@drawable/ic_config"
-            android:title="Configurações" />
+            android:title="@string/configura_es" />
 
         <item android:id="@+id/sair"
             android:icon="@drawable/ic_sair"
-            android:title="Sair" />
+            android:title="@string/sair" />
 
     </group>
 

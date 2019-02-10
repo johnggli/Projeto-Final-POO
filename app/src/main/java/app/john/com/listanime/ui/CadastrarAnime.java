@@ -1,11 +1,6 @@
 package app.john.com.listanime.ui;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,20 +8,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import app.john.com.listanime.R;
 import app.john.com.listanime.intermediario.Controle;
 
-public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DialogExcluir.DialogExcluirAnimeListener {
+public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
+        DialogExcluir.DialogExcluirAnimeListener {
 
     private EditText tituloDoAnime, nomeDoEstudio, anoDeExibicao, totalDeEpisodios, nomeDoDiretor,
             descricao;
@@ -34,10 +25,10 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
     private String status;
     private boolean favorito;
     private int nota, quantidadeDeEpisodiosAssistidos;
-    private Spinner spinnerStatus;
-    private RatingBar ratingBar;
     private Button setFavorito, btnExcluir;
     private Controle controle;
+    private Spinner spinnerStatus;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +39,12 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
 
         spinnerStatus = findViewById(R.id.spinnerStatus);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.animeStatus, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.animeStatus, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerStatus.setAdapter(adapter);
-
         spinnerStatus.setOnItemSelectedListener(this);
 
         ratingBar = findViewById(R.id.ratingBar);
@@ -63,6 +55,53 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+        setupDados(); // inicia os atributos.
+
+        /* verifica se é edição de anime */
+        if (controle.isEdicao()) {
+            setupDadosEdicao(); // inicia os atributos em caso de edição.
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setupDadosEdicao() {
+        getSupportActionBar().setTitle("Editar Anime");
+
+        tituloDoAnime.setText(controle.getAnimeSendoEditado().getTitulo());
+        nomeDoEstudio.setText(controle.getAnimeSendoEditado().getEstudio());
+        anoDeExibicao.setText(Integer.toString(controle.getAnimeSendoEditado().getAnoDeExibicao()));
+        totalDeEpisodios.setText(Integer.toString(controle.getAnimeSendoEditado().getEpisodiosTotais()));
+        nomeDoDiretor.setText(controle.getAnimeSendoEditado().getDiretor());
+        descricao.setText(controle.getAnimeSendoEditado().getDescricao());
+        episodiosAssistidos.setText(Integer.toString(controle.getAnimeSendoEditado().getEpisodiosAssistidos()));
+        ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
+        spinnerStatus.setSelection(controle.getPosicaoStatus());
+        quantidadeDeEpisodiosAssistidos = controle.getAnimeSendoEditado().getEpisodiosAssistidos();
+        favorito = controle.getAnimeSendoEditado().isFavorito();
+
+        setFavorito.setVisibility(View.VISIBLE);
+        btnExcluir.setVisibility(View.VISIBLE);
+
+        if (favorito) {
+            setFavorito.setText("REMOVER DOS FAVORITOS");
+        }
+
+        setFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favorito) {
+                    favorito = false;
+                    setFavorito.setText("ADICIONAR AOS FAVORITOS");
+                }
+                else {
+                    favorito = true;
+                    setFavorito.setText("REMOVER DOS FAVORITOS");
+                }
+            }
+        });
+    }
+
+    private void setupDados() {
         tituloDoAnime = findViewById(R.id.txtTitulo);
         nomeDoEstudio = findViewById(R.id.txtEstudio);
         anoDeExibicao = findViewById(R.id.txtAno);
@@ -72,45 +111,7 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         episodiosAssistidos = findViewById(R.id.txtEpisodiosAssistidos);
         setFavorito = findViewById(R.id.btnFavorito);
         btnExcluir = findViewById(R.id.btnExcluir);
-
         quantidadeDeEpisodiosAssistidos = 0;
-
-        if (controle.isEdicao()) {
-            getSupportActionBar().setTitle("Editar Anime");
-
-            tituloDoAnime.setText(controle.getAnimeSendoEditado().getTitulo());
-            nomeDoEstudio.setText(controle.getAnimeSendoEditado().getEstudio());
-            anoDeExibicao.setText("" + controle.getAnimeSendoEditado().getAnoDeExibicao());
-            totalDeEpisodios.setText("" + controle.getAnimeSendoEditado().getEpisodiosTotais());
-            nomeDoDiretor.setText(controle.getAnimeSendoEditado().getDiretor());
-            descricao.setText(controle.getAnimeSendoEditado().getDescricao());
-            episodiosAssistidos.setText("" + controle.getAnimeSendoEditado().getEpisodiosAssistidos());
-            ratingBar.setRating(controle.getAnimeSendoEditado().getPontuacao());
-            spinnerStatus.setSelection(controle.getPosicaoStatus());
-            quantidadeDeEpisodiosAssistidos = controle.getAnimeSendoEditado().getEpisodiosAssistidos();
-            favorito = controle.getAnimeSendoEditado().isFavorito();
-
-            setFavorito.setVisibility(View.VISIBLE);
-            btnExcluir.setVisibility(View.VISIBLE);
-
-            if (favorito) {
-                setFavorito.setText("REMOVER DOS FAVORITOS");
-            }
-
-            setFavorito.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (favorito) {
-                        favorito = false;
-                        setFavorito.setText("ADICIONAR AOS FAVORITOS");
-                    }
-                    else {
-                        favorito = true;
-                        setFavorito.setText("REMOVER DOS FAVORITOS");
-                    }
-                }
-            });
-        }
     }
 
     public void cancelarMudancas(View view) {
@@ -122,6 +123,7 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         dialogExcluir.show(getSupportFragmentManager(), "dialog excluir");
     }
 
+    @SuppressLint("SetTextI18n")
     public void adiconarAnime(View view) {
         String titulo = tituloDoAnime.getText().toString();
         String estudio = nomeDoEstudio.getText().toString();
@@ -134,19 +136,8 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         int pontuacao = nota;
         int quantidadeAssistidos = Integer.parseInt(episodiosAssistidos.getText().toString());
 
-        if (episodiosTotais.length() > 0) {
-            if ((quantidadeAssistidos > 0) && (quantidadeAssistidos < Integer.parseInt(episodiosTotais))
-                    && !status.equals("Descartado")) {
-                status = "Assistindo";
-            }
-
-            if (status.equals("Concluído")) {
-                quantidadeAssistidos = Integer.parseInt(episodiosTotais);
-            }
-
-            if (quantidadeAssistidos == Integer.parseInt(episodiosTotais)) {
-                status = "Concluído";
-            }
+        if ((episodiosTotais.length() > 0) && (status.equals("Concluído"))) {
+            quantidadeAssistidos = Integer.parseInt(episodiosTotais);
         }
 
         if (controle.cadastrarAnime(titulo, estudio, ano, episodiosTotais, quantidadeAssistidos, status,
@@ -164,6 +155,7 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void incrementar(View view) {
         if (totalDeEpisodios.length() <= 0) {
             mostrarMensagem("Informe o total de episódios.");
@@ -172,10 +164,11 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             if (quantidadeDeEpisodiosAssistidos < Integer.parseInt(totalDeEpisodios.getText().toString())) {
                 quantidadeDeEpisodiosAssistidos++;
             }
-            episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+            episodiosAssistidos.setText(Integer.toString(quantidadeDeEpisodiosAssistidos));
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void decrementar(View view) {
         if (totalDeEpisodios.length() <= 0) {
             mostrarMensagem("Informe o total de episódios.");
@@ -184,13 +177,14 @@ public class CadastrarAnime extends AppCompatActivity implements AdapterView.OnI
             if (quantidadeDeEpisodiosAssistidos > 0) {
                 quantidadeDeEpisodiosAssistidos--;
             }
-            episodiosAssistidos.setText("" + quantidadeDeEpisodiosAssistidos);
+            episodiosAssistidos.setText(Integer.toString(quantidadeDeEpisodiosAssistidos));
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         status = parent.getItemAtPosition(position).toString();
+
     }
 
     @Override

@@ -1,21 +1,18 @@
 package app.john.com.listanime.modelos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.relation.ToMany;
 
 @Entity
 public class Top {
-    // Atributos
+    /* Atributos */
     @Id
     private long id;
     private String tituloDoTop;
     private ToMany<Anime> animesDoTop;
 
-    // Construtores
+    /* Construtores */
     public Top() {
 
     }
@@ -24,7 +21,7 @@ public class Top {
         this.tituloDoTop = tituloDoTop;
     }
 
-    // Métodos
+    /* Métodos */
     public void adicionarAnimeAoTop(Anime anime) {
         animesDoTop.add(anime);
     }
@@ -33,7 +30,7 @@ public class Top {
         animesDoTop.remove(anime);
     }
 
-    // Métodos Get/Set
+    /* Métodos Get/Set */
     public long getId() {
         return id;
     }
@@ -52,9 +49,5 @@ public class Top {
 
     public ToMany<Anime> getAnimesDoTop() {
         return animesDoTop;
-    }
-
-    public void setAnimesDoTop(ToMany<Anime> animesDoTop) {
-        this.animesDoTop = animesDoTop;
     }
 }
